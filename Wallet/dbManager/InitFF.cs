@@ -13,7 +13,7 @@ namespace Wallet.InitApp
         private StorageFolder appFolder;
 
         private String main_folder = "wallet";
-        private String db_file = "db_wallet";
+        private String db_file = "dbw.db";
 
         public String error = null;
 
@@ -22,16 +22,10 @@ namespace Wallet.InitApp
             CreateFF();
         }
 
-        private bool createDB()
-        {
+        //Create app folder and file into AppData
 
-            return true;
-        }
-
-        //Old but gold
         private async Task<bool> CreateFF()
         {
-            //Create app folder and file into AppData
             try
             {
                 storageFolder.CreateFolderAsync(main_folder);
