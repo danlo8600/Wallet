@@ -7,28 +7,28 @@ using Windows.Storage;
 
 namespace Wallet.InitApp
 {
-    class InitFF
+    class InitFolder
     {
         private StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
-        private StorageFolder appFolder;
+        private StorageFolder dataFolder = null;
 
-        private String main_folder = "wallet";
+        private String main_folder = "data_wallet";
 
         public String error = null;
 
-        public InitFF()
+        public InitFolder()
         {
-            createFF();
+            setFolder();
         }
 
-        //Create app folder and file into AppData
+        //Create folder into AppData for database
 
-        private async Task<bool> createFF()
+        private async Task<bool> setFolder()
         {
             try
             {
                 storageFolder.CreateFolderAsync(main_folder);
-                appFolder = await storageFolder.GetFolderAsync(main_folder);
+                dataFolder = await storageFolder.GetFolderAsync(main_folder);
             }
             catch (System.IO.FileNotFoundException fn)
             {
@@ -47,6 +47,11 @@ namespace Wallet.InitApp
             }
 
             return true;
+        }
+
+        public StorageFolder getFolder()
+        {
+            return dataFolder;
         }
     }
 }
