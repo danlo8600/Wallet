@@ -12,8 +12,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
-
+using Windows.Storage;
+using System.Threading.Tasks;
 // Il modello di elemento per la pagina vuota è documentato all'indirizzo http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x410
 
 namespace Wallet
@@ -23,10 +23,27 @@ namespace Wallet
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private InitApp.InitFF app = null;
+        private StorageFile db = null;
+        private dbManager.DBManager manager = null;
+
         public MainPage()
         {
-            new InitApp.InitFF();
             this.InitializeComponent();
+            start();
+            //Remove this code
+            dbManager.Product pd = new dbManager.Product();
+            pd.setName("monnezza");
+            manager.writeDB(DateTime.Today, pd, 10.50F);
+            //Remove this code
+        }
+
+        private async Task<bool> start()
+        {
+            app = new InitApp.InitFF();
+            db = await app.getDB();
+            manager = new dbManager.DBManager(db);
+            return true;
         }
     }
 }

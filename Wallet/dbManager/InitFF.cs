@@ -15,16 +15,22 @@ namespace Wallet.InitApp
         private String main_folder = "wallet";
         private String db_file = "dbw.db";
 
+        private dbManager.DBManager manager = null;
+
         public String error = null;
 
         public InitFF()
         {
-            CreateFF();
+            createFF();
+        }
+
+        public async Task<StorageFile> getDB() {
+            return await appFolder.GetFileAsync(db_file);
         }
 
         //Create app folder and file into AppData
 
-        private async Task<bool> CreateFF()
+        private async Task<bool> createFF()
         {
             try
             {
