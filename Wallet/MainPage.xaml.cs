@@ -28,6 +28,7 @@ namespace Wallet
         {
             this.InitializeComponent();
             dbFolder = new InitApp.InitFolder().getFolder();
+            new DbManager.CreateDB().initDB(dbFolder);
         }
     }
 }
