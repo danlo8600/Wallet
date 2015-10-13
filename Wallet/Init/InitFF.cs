@@ -13,19 +13,12 @@ namespace Wallet.InitApp
         private StorageFolder appFolder;
 
         private String main_folder = "wallet";
-        private String db_file = "dbw.db";
-
-        private dbManager.DBManager manager = null;
 
         public String error = null;
 
         public InitFF()
         {
             createFF();
-        }
-
-        public async Task<StorageFile> getDB() {
-            return await appFolder.GetFileAsync(db_file);
         }
 
         //Create app folder and file into AppData
@@ -36,7 +29,6 @@ namespace Wallet.InitApp
             {
                 storageFolder.CreateFolderAsync(main_folder);
                 appFolder = await storageFolder.GetFolderAsync(main_folder);
-                appFolder.CreateFileAsync(db_file);
             }
             catch (System.IO.FileNotFoundException fn)
             {
