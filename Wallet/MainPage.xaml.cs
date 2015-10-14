@@ -23,12 +23,15 @@ namespace Wallet
     public sealed partial class MainPage : Page
     {
         private StorageFolder dbFolder = null;
-
+        private DbManager.CreateDB db = null;
+        private DbManager.OperationsOnDB opp = null;
         public MainPage()
         {
             this.InitializeComponent();
             dbFolder = new InitApp.InitFolder().getFolder();
-            new DbManager.CreateDB().initDB(dbFolder);
+            db = new DbManager.CreateDB(dbFolder);
+            opp = new DbManager.OperationsOnDB(db.getConnection());
+            opp.setEvent("pippo", "franco");
         }
     }
 }

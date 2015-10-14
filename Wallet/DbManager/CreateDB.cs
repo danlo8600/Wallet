@@ -8,13 +8,14 @@ using SQLiteNetExtensions.Attributes;
 
 namespace Wallet.DbManager
 {
+
     class CreateDB
     {
-        SQLiteConnection cdb = null;
+        public SQLiteConnection cdb = null;
 
-        public void initDB(StorageFolder folder)
+        public CreateDB(StorageFolder folder)
         {
-            var path = Path.Combine(folder.Path, "db.sqlite");
+            var path = Path.Combine(folder.Path, "wallet.db");
     
             using (cdb = new SQLiteConnection(new SQLite.Net.Platform.WinRT.SQLitePlatformWinRT(), path))
             {
@@ -22,10 +23,21 @@ namespace Wallet.DbManager
                 cdb.CreateTable<Price>();
             }
         }
+
+        public SQLiteConnection getConnection()
+        {
+            return cdb;
+        }
+
+        public void closeDB()
+        {
+            cdb.Close();
+        }
+
     }
 
     [Table("Event")]
-    class Event
+    public class Event
     {
         [Column("IdEvent"), PrimaryKey, AutoIncrement]
         public int IdEvent { get; set; }
@@ -47,5 +59,13 @@ namespace Wallet.DbManager
 
         [ForeignKey(typeof(Event)), Column("IdE")]
         public int IdE { get; set; }
+    }
+
+    class prova
+    {
+        public void testDB()
+        {
+            
+        }
     }
 }

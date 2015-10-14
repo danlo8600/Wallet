@@ -100,6 +100,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="DbManager\CreateDB.cs" />
+    <Compile Include="DbManager\OperationsOnDB.cs" />
     <Compile Include="Init\InitFolder.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
