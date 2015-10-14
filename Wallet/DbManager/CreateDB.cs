@@ -1,12 +1,10 @@
 ﻿using SQLite.Net.Attributes;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.Storage;
 using SQLite.Net;
+using SQLiteNetExtensions;
+using SQLiteNetExtensions.Attributes;
 
 namespace Wallet.DbManager
 {
@@ -17,7 +15,7 @@ namespace Wallet.DbManager
         public void initDB(StorageFolder folder)
         {
             var path = Path.Combine(folder.Path, "db.sqlite");
-
+    
             using (cdb = new SQLiteConnection(new SQLite.Net.Platform.WinRT.SQLitePlatformWinRT(), path))
             {
                 cdb.CreateTable<Event>();
@@ -41,10 +39,10 @@ namespace Wallet.DbManager
     [Table("Belongs")]
     class Belongs
     {
-        //[Column("IdEvent"), PrimaryKey]
-        public int IdEvent { get; set; }
-        //[Column("IdPrice"), PrimaryKey]
-        public int IdPrice { get; set; }
+        [ForeignKey(typeof(Event)), Column("IdE")]
+        public int IdE { get; set; }
+        [ForeignKey(typeof(Price)), Column("IdP")]
+        public int IdP { get; set; }
     }
 
     [Table("Price")]
