@@ -14,7 +14,7 @@ namespace Wallet.DbManager
         public OperationsOnDB(SQLiteConnection conn)
         {
             db = conn;
-            setEvent("Scontrino", "Scontrino supermercato");
+            setEvent("bar", "colazione");
         }
 
         public void setEvent(string eventName, string description)
@@ -23,7 +23,6 @@ namespace Wallet.DbManager
             {
                 var s = db.Insert(new Event()
                 {
-                    IdEvent = 1,
                     Name = eventName,
                     Description = description
                 });
