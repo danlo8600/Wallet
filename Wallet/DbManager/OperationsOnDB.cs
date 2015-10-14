@@ -14,7 +14,7 @@ namespace Wallet.DbManager
         public OperationsOnDB(SQLiteConnection conn)
         {
             db = conn;
-            setEvent("bar", "colazione");
+            setEvent("Bar", "Colazione");
         }
 
         public void setEvent(string eventName, string description)
