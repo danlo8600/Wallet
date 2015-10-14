@@ -31,7 +31,6 @@ namespace Wallet
             dbFolder = new InitApp.InitFolder().getFolder();
             db = new DbManager.CreateDB(dbFolder);
             opp = new DbManager.OperationsOnDB(db.getConnection());
-            opp.setEvent("pippo", "franco");
         }
     }
 }

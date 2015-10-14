@@ -3,8 +3,6 @@ using System;
 using System.IO;
 using Windows.Storage;
 using SQLite.Net;
-using SQLiteNetExtensions;
-using SQLiteNetExtensions.Attributes;
 
 namespace Wallet.DbManager
 {
@@ -48,7 +46,7 @@ namespace Wallet.DbManager
     }
 
     [Table("Price")]
-    class Price
+    public class Price
     {
         [Column("IdPrice"), PrimaryKey, AutoIncrement]
         public int IdPrice { get; set; }
@@ -57,15 +55,7 @@ namespace Wallet.DbManager
         [Column("Date"), NotNull, MaxLength(10)]
         public DateTime date { get; set; }
 
-        [ForeignKey(typeof(Event)), Column("IdE")]
+        [Indexed, Column("IdE")]
         public int IdE { get; set; }
-    }
-
-    class prova
-    {
-        public void testDB()
-        {
-            
-        }
     }
 }
