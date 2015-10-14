@@ -27,7 +27,6 @@ namespace Wallet.DbManager
                     Name = eventName,
                     Description = description
                 });
-                db.Commit();
             }
             catch (System.NullReferenceException ex)
             {
