@@ -6,7 +6,7 @@ using SQLite.Net;
 
 namespace Wallet.DbManager
 {
-
+    //This class create database
     class CreateDB
     {
         public SQLiteConnection db = null;
@@ -21,11 +21,13 @@ namespace Wallet.DbManager
             
         }
 
+        //Return active connection to database
         public SQLiteConnection getConnection()
         {
             return db;
         }
 
+        //Close database
         public void closeDB()
         {
             db.Close();
@@ -33,6 +35,7 @@ namespace Wallet.DbManager
 
     }
 
+    //Definitions class table for database
     [Table("Event")]
     public class Event
     {

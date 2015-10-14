@@ -14,8 +14,6 @@ namespace Wallet.InitApp
 
         private String main_folder = "data_wallet";
 
-        public String error = null;
-
         public InitFolder()
         {
             setFolder();
@@ -23,32 +21,29 @@ namespace Wallet.InitApp
 
         //Create folder into AppData for database
 
-        private async Task<bool> setFolder()
+        private async Task<Exception> setFolder()
         {
             try
             {
-                storageFolder.CreateFolderAsync(main_folder);
+                await storageFolder.CreateFolderAsync(main_folder);
                 dataFolder = await storageFolder.GetFolderAsync(main_folder);
+                return new Exception("true");
             }
-            catch (System.IO.FileNotFoundException fn)
+            catch (System.IO.FileNotFoundException FNFEX)
             {
-                error = fn.Message;
-                return false;
+                return FNFEX;
             }
-            catch (System.UnauthorizedAccessException ua)
+            catch (System.UnauthorizedAccessException UAEX)
             {
-                error = ua.Message;
-                return false;
+                return UAEX;
             }
-            catch (System.ArgumentException ae)
+            catch (System.ArgumentException AEEX)
             {
-                error = ae.Message;
-                return false;
+                return AEEX;
             }
 
-            return true;
         }
-
+        //Return the database folder
         public StorageFolder getFolder()
         {
             return dataFolder;

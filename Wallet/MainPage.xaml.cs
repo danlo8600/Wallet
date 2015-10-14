@@ -25,6 +25,7 @@ namespace Wallet
         private StorageFolder dbFolder = null;
         private DbManager.CreateDB db = null;
         private DbManager.OperationsOnDB opp = null;
+
         public MainPage()
         {
             this.InitializeComponent();
