@@ -9,27 +9,26 @@ namespace Wallet.DbManager
 
     class CreateDB
     {
-        public SQLiteConnection cdb = null;
+        public SQLiteConnection db = null;
 
         public CreateDB(StorageFolder folder)
         {
             var path = Path.Combine(folder.Path, "wallet.db");
     
-            using (cdb = new SQLiteConnection(new SQLite.Net.Platform.WinRT.SQLitePlatformWinRT(), path))
-            {
-                cdb.CreateTable<Event>();
-                cdb.CreateTable<Price>();
-            }
+            db = new SQLiteConnection(new SQLite.Net.Platform.WinRT.SQLitePlatformWinRT(), path);
+            db.CreateTable<Event>();
+            db.CreateTable<Price>();
+            
         }
 
         public SQLiteConnection getConnection()
         {
-            return cdb;
+            return db;
         }
 
         public void closeDB()
         {
-            cdb.Close();
+            db.Close();
         }
 
     }

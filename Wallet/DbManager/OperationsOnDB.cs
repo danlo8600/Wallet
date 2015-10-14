@@ -20,13 +20,14 @@ namespace Wallet.DbManager
         public void setEvent(string eventName, string description)
         {
             try
-            { 
+            {
                 var s = db.Insert(new Event()
                 {
                     IdEvent = 1,
                     Name = eventName,
                     Description = description
                 });
+                db.Commit();
             }
             catch (System.NullReferenceException ex)
             {
