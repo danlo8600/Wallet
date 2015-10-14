@@ -19,7 +19,6 @@ namespace Wallet.DbManager
             using (cdb = new SQLiteConnection(new SQLite.Net.Platform.WinRT.SQLitePlatformWinRT(), path))
             {
                 cdb.CreateTable<Event>();
-                cdb.CreateTable<Belongs>();
                 cdb.CreateTable<Price>();
             }
         }
@@ -36,23 +35,17 @@ namespace Wallet.DbManager
         public string Description { get; set; }
     }
 
-    [Table("Belongs")]
-    class Belongs
-    {
-        [ForeignKey(typeof(Event)), Column("IdE")]
-        public int IdE { get; set; }
-        [ForeignKey(typeof(Price)), Column("IdP")]
-        public int IdP { get; set; }
-    }
-
     [Table("Price")]
     class Price
     {
         [Column("IdPrice"), PrimaryKey, AutoIncrement]
         public int IdPrice { get; set; }
-        [Column("price"), NotNull, MaxLength(10)]
+        [Column("Value"), NotNull, MaxLength(10)]
         public float price { get; set; }
-        [Column("date"), NotNull, MaxLength(10)]
+        [Column("Date"), NotNull, MaxLength(10)]
         public DateTime date { get; set; }
+
+        [ForeignKey(typeof(Event)), Column("IdE")]
+        public int IdE { get; set; }
     }
 }
