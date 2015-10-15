@@ -49,9 +49,9 @@ namespace Wallet.DbManager
     [Table("Cost")]
     public class Cost
     {
-        [PrimaryKey, Column("IdA")]
+        [Column("IdA")]
         public int IdA { get; set; }
-        [PrimaryKey, Column("IdB")]
+        [Column("IdB")]
         public int IdB { get; set; }
         [Column("Value"), NotNull, MaxLength(10)]
         public float Price { get; set; }

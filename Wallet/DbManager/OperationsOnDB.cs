@@ -18,7 +18,7 @@ namespace Wallet.DbManager
             //Devo controllare se l'evento è già presente
             try
             {
-                var s = db.Insert(new Event()
+                var s = db.Insert(new Activity()
                 {
                     Name = eventName,
                     Description = description
