@@ -105,72 +105,103 @@ namespace Wallet.DbManager
         /********************************************/
 
         //Insert new Cost
-        public void setCost(float value, DateTime date, int eventKey)
-        {
-            //Devo recuperare l'ultima chiave usata
-        }
-
-        //Find if Cost exist
-        public bool findnCost(int idCost)
+        public Exception setCost(float value, DateTime date, int activityId, string description)
         {
             try
             {
-                var res = db.Query<Cost>("select * from Cost where IdCost = " + "'" + idCost + "'");
+                var s = db.Insert(new Cost()
+                {
+                    ActivityId = activityId,
+                    Date = date,
+                    Description = description,
+                    Price = value
+                });
 
-                if (res.Count() > 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return succes;
             }
-            catch (NullReferenceException NREEX)
+            catch (System.NullReferenceException SYSEX)
             {
-                Debug.WriteLine("ERRORE:" + NREEX.Message);
+                return SYSEX;
             }
             catch (SQLite.Net.SQLiteException SQLEX)
             {
-                Debug.WriteLine(SQLEX.Message);
+                return SQLEX;
             }
+        }
 
-            return false;
+        //Find Costs of a specifc date
+        public List<Cost> findCosts(DateTime startDate, DateTime endDate)
+        {
+            var res = db.Query<Cost>("select * from cost where Date >= " + "'" + startDate + "'" + " and " + "Date <= " + "'" + endDate + "'");
+            return res;
         }
 
         //Get all data from exsisting Cost
-        public void getCost()
+        public List<Cost> getCost()
         {
-
+            var res = db.Query<Cost>("select * from Cost");
+            return res;
         }
 
         //Remove an exsisting Cost
-        public bool removeCost()
+        public bool removeCost(int costId)
         {
+            db.Delete(new Cost()
+            {
+                IdCost = costId
+            });
             return true;
         }
+
+        /***********************************************/
+        /*** This code manage query on Account table ***/
+        /***********************************************/
 
         //Insert new Account
-        public void setAccount()
+        public Exception setAccount(float amount, DateTime date, string description)
         {
-            //Devo recuperare l'ultima chiave usata
+            try
+            {
+                var s = db.Insert(new Account()
+                {
+                    Amount = amount,
+                    Date = date, 
+                    Description = description,
+                });
+
+                return succes;
+            }
+            catch (System.NullReferenceException SYSEX)
+            {
+                return SYSEX;
+            }
+            catch (SQLite.Net.SQLiteException SQLEX)
+            {
+                return SQLEX;
+            }
         }
 
-        //Find if Account exist
-        public bool findAccount()
+        //Find Accounts of a specifc date
+        public List<Account> findAccounts(DateTime startDate, DateTime endDate)
         {
-            return true;
+            var res = db.Query<Account>("select * from cost where Date >= " + "'" + startDate + "'" + " and " + "Date <= " + "'" + endDate + "'");
+            return res;
         }
 
         //Get all data from exsisting Account
-        public void getBAccounts()
+        public List<Account> getAccounts()
         {
-
+            var res = db.Query<Account>("select * from Account");
+            return res;
         }
 
         //Remove an exsisting Account
-        public bool removeAccount()
+        public bool removeAccount(int accountId)
         {
+            db.Delete(new Account()
+            {
+                IdAccount = accountId
+            });
             return true;
         }
     }
