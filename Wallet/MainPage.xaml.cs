@@ -32,6 +32,9 @@ namespace Wallet
             dbFolder = new InitApp.InitFolder().getFolder();
             db = new DbManager.CreateDB(dbFolder);
             opp = new DbManager.OperationsOnDB(db.getConnection());
+            //opp.setActivity("Biglietto", "Descrizione di prova2");
+            //opp.removeActivity("Biglietto");
+            
         }
     }
 }

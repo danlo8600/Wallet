@@ -25,7 +25,8 @@ namespace Wallet.InitApp
         {
             try
             {
-                await storageFolder.CreateFolderAsync(main_folder);
+                /*** WARNING Don't add await in front of this line of code, the DB stop to work ***/
+                storageFolder.CreateFolderAsync(main_folder);
                 dataFolder = await storageFolder.GetFolderAsync(main_folder);
                 return new Exception("true");
             }
