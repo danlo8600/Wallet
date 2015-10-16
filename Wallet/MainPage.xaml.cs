@@ -32,9 +32,37 @@ namespace Wallet
             dbFolder = new InitApp.InitFolder().getFolder();
             db = new DbManager.CreateDB(dbFolder);
             opp = new DbManager.OperationsOnDB(db.getConnection());
+            CostList.
             //opp.setActivity("Biglietto", "Descrizione di prova2");
             //opp.removeActivity("Biglietto");
-            
+
         }
+
+        private void hMenu_Click(object sender, RoutedEventArgs e)
+        {
+            FirstShell.IsPaneOpen = !FirstShell.IsPaneOpen;
+        }
+
+        private void addCost_Click(object sender, RoutedEventArgs e)
+        {
+            //opp.setCost();
+        }
+
+        private void addActivity_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void addAccount_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void populateCostList()
+        {
+            DateTime date = new Calendar;
+
+        }
+
     }
 }

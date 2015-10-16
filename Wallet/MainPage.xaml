@@ -7,8 +7,44 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Margin="169,73,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="158" Width="420"/>
-
+    <Grid Background="#171717" RequestedTheme="Dark">
+        <SplitView x:Name="FirstShell" DisplayMode="CompactInline" IsPaneOpen="True" CompactPaneLength="44" OpenPaneLength="224" RequestedTheme="Dark">
+            <SplitView.Pane>
+                <StackPanel Background="#171717" RequestedTheme="Dark">
+                    <Button x:Name="hMenu" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" FontSize="20" Width="50" Height="50" Background="Transparent" Click="hMenu_Click" Foreground="White"/>
+                    <StackPanel Background="#171717">
+                        <Button x:Name="addCost" FontFamily="Segoe MDL2 Assets" Content="&#xE109;" FontSize="20" Width="50" Height="50" Background="Transparent" Click="addCost_Click" Foreground="White"/>
+                    </StackPanel>
+                    <StackPanel Background="#171717">
+                        <Button x:Name="addActivity" FontFamily="Segoe MDL2 Assets" Content="&#xE082;" FontSize="20" Width="50" Height="50" Background="Transparent" Click="addActivity_Click" Foreground="White"/>
+                    </StackPanel>
+                    <StackPanel Background="#171717">
+                        <Button x:Name="addAccount" Content="$" FontSize="20" Width="50" Height="50" Background="Transparent" Click="addAccount_Click" Foreground="White"/>
+                    </StackPanel>
+                </StackPanel>
+            </SplitView.Pane>
+            <SplitView.Content>
+                <SplitView x:Name="SecondShell" DisplayMode="CompactInline" IsPaneOpen="True" CompactPaneLength="60" RequestedTheme="Dark">
+                    <SplitView.Pane>
+                        <StackPanel>
+                            <ListBox x:Name="CostList" Width="auto" Height="696" BorderThickness="0" RequestedTheme="Dark" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
+                            <StackPanel Height="24">
+                                <TextBox x:Name="AccountText" RequestedTheme="Dark" BorderThickness="0" />
+                            </StackPanel>
+                        </StackPanel>
+                    </SplitView.Pane>
+                    <SplitView.Content>
+                        <StackPanel Height="auto">
+                            <TextBox x:Name="Description" Width="auto" Height="auto" Text="" Background="White" IsReadOnly="True" BorderBrush="Black" SelectionHighlightColor="black" IsSpellCheckEnabled="True" FlowDirection="RightToLeft" BorderThickness="0" RequestedTheme="Dark" MinHeight="390" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+                            <StackPanel Height="auto" Width="auto">
+                                <CalendarView x:Name="Calendar" DisplayMode="Month" Background="Gray" Width="auto" Height="auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderThickness="0" CalendarItemBorderThickness="0" RequestedTheme="Dark" HorizontalDayItemAlignment="Center" HorizontalFirstOfMonthLabelAlignment="Stretch"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </SplitView.Content>
+                </SplitView>
+            </SplitView.Content>
+        </SplitView>
+        <ListView x:Name="listView" HorizontalAlignment="Left" Height="100" Margin="2101,398,-281,0" VerticalAlignment="Top" Width="100"/>
+        <ListView x:Name="listView1" HorizontalAlignment="Left" Height="100" Margin="2705,445,-245,0" VerticalAlignment="Top" Width="100"/>
     </Grid>
 </Page>
