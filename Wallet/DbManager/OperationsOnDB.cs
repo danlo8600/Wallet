@@ -105,7 +105,7 @@ namespace Wallet.DbManager
         /********************************************/
 
         //Insert new Cost
-        public Exception setCost(float value, DateTime date, int activityId, string description)
+        public Exception setCost(float value, DateTime date, string activityId, string description)
         {
             try
             {

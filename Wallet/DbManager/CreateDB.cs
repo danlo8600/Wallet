@@ -59,7 +59,7 @@ namespace Wallet.DbManager
         [PrimaryKey, Column("IdCost"), AutoIncrement]
         public int IdCost { get; set; }
         [Column("ActivityId")]
-        public int ActivityId { get; set; }
+        public string ActivityId { get; set; }
         [Column("Price"), NotNull, MaxLength(10)]
         public float Price { get; set; }
         [Column("Date"), NotNull, MaxLength(10)]
