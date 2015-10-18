@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.Storage;
 using Wallet.DbManager;
+using System.Globalization;
 // Il modello di elemento per la pagina vuota è documentato all'indirizzo http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x410
 
 namespace Wallet
@@ -61,13 +62,16 @@ namespace Wallet
 
         private void populateCostList()
         {
-            float total = 0;
+           float total = 0;
+           var simbol = System.Globalization.RegionInfo.CurrentRegion.CurrencySymbol;
 
             List<Cost> act = opp.getCost();
             foreach(var a in act)
             {
+                
+
                 total += a.Price;
-                String ls = a.ActivityId + " " + a.Price + " € ";
+                String ls = a.ActivityId + " " + a.Price + " " + simbol;
                 CostList.Items.Add(ls);
             }
 
