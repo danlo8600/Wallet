@@ -62,7 +62,7 @@ namespace Wallet.DbManager
         public string ActivityId { get; set; }
         [Column("Price"), NotNull, MaxLength(10)]
         public float Price { get; set; }
-        [Column("Date"), NotNull, MaxLength(10)]
+        [Column("Date"), NotNull]
         public DateTime Date { get; set; }
         [Column("Description"), MaxLength(50)]
         public string Description { get; set; }

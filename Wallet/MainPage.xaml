@@ -37,7 +37,7 @@
                         <StackPanel Height="auto">
                             <TextBox x:Name="Description" Width="auto" Height="auto" Text="" Background="White" IsReadOnly="True" BorderBrush="Black" SelectionHighlightColor="black" IsSpellCheckEnabled="True" FlowDirection="RightToLeft" BorderThickness="0" RequestedTheme="Dark" MinHeight="390" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
                             <StackPanel Height="auto" Width="auto">
-                                <CalendarView x:Name="Calendar" DisplayMode="Month" Background="Gray" Width="auto" Height="auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderThickness="0" CalendarItemBorderThickness="0" RequestedTheme="Dark" HorizontalDayItemAlignment="Center" HorizontalFirstOfMonthLabelAlignment="Stretch"/>
+                                <CalendarView x:Name="Calendar" DisplayMode="Month" Background="Gray" Width="auto" Height="auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderThickness="0" CalendarItemBorderThickness="0" RequestedTheme="Dark" HorizontalDayItemAlignment="Center" HorizontalFirstOfMonthLabelAlignment="Stretch" IsTabStop="False" NumberOfWeeksInView="6"/>
                             </StackPanel>
                         </StackPanel>
                     </SplitView.Content>

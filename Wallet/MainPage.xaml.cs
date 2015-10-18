@@ -34,6 +34,9 @@ namespace Wallet
             dbFolder = new InitApp.InitFolder().getFolder();
             db = new DbManager.CreateDB(dbFolder);
             opp = new DbManager.OperationsOnDB(db.getConnection());
+
+            DateTime date = DateTime.Now;
+            opp.setCost("Scontrino", 20, date , "Prova");
             populateCostList();
             //opp.setActivity("Biglietto", "Descrizione di prova2");
             //opp.removeActivity("Biglietto");
@@ -68,13 +71,10 @@ namespace Wallet
             List<Cost> act = opp.getCost();
             foreach(var a in act)
             {
-                
-
                 total += a.Price;
-                String ls = a.ActivityId + " " + a.Price + " " + simbol;
+                String ls = a.ActivityId + " " + a.Price + " " + simbol + " " + a.Date.ToString(System.Globalization.DateTimeFormatInfo.CurrentInfo);
                 CostList.Items.Add(ls);
             }
-
             AccountText.Text = total.ToString();
 
         }
