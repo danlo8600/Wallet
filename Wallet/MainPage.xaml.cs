@@ -37,7 +37,7 @@ namespace Wallet
 
             DateTime date = DateTime.Now;
             opp.setCost("Scontrino", 20, date , "Prova");
-            populateCostList();
+            //populateCostList();
             //opp.setActivity("Biglietto", "Descrizione di prova2");
             //opp.removeActivity("Biglietto");
 
@@ -55,7 +55,7 @@ namespace Wallet
 
         private void addActivity_Click(object sender, RoutedEventArgs e)
         {
-
+        
         }
 
         private void addAccount_Click(object sender, RoutedEventArgs e)
@@ -63,7 +63,7 @@ namespace Wallet
 
         }
 
-        private void populateCostList()
+        /*private void populateCostList()
         {
            float total = 0;
            var simbol = System.Globalization.RegionInfo.CurrentRegion.CurrencySymbol;
@@ -77,7 +77,7 @@ namespace Wallet
             }
             AccountText.Text = total.ToString();
 
-        }
+        }*/
 
     }
 }
