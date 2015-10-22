@@ -46,6 +46,14 @@ namespace Wallet
         private void hMenu_Click(object sender, RoutedEventArgs e)
         {
             FirstShell.IsPaneOpen = !FirstShell.IsPaneOpen;
+            if (!FirstShell.IsPaneOpen)
+            {
+                Calendar.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                Calendar.Visibility = Visibility.Visible;
+            }
         }
 
         private void addCost_Click(object sender, RoutedEventArgs e)
