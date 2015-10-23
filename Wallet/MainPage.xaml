@@ -39,6 +39,14 @@
                     <CalendarView x:Name="Calendar" HorizontalDayItemAlignment="Stretch" HorizontalFirstOfMonthLabelAlignment="Stretch" HorizontalContentAlignment="Stretch" />
                 </StackPanel>
             </SplitView.Pane>
+            <SplitView.Content>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <ListView x:Name="CostList" ScrollViewer.VerticalScrollBarVisibility="Hidden" />
+                </Grid>
+            </SplitView.Content>
         </SplitView>
     </Grid>
 </Page>

@@ -35,9 +35,9 @@ namespace Wallet
             db = new DbManager.CreateDB(dbFolder);
             opp = new DbManager.OperationsOnDB(db.getConnection());
 
-            DateTime date = DateTime.Now;
-            opp.setCost("Scontrino", 20, date , "Prova");
-            //populateCostList();
+            //DateTime date = DateTime.Now;
+            //opp.setCost("Scontrino", 20, date , "Prova");
+            populateCostList();
             //opp.setActivity("Biglietto", "Descrizione di prova2");
             //opp.removeActivity("Biglietto");
 
@@ -71,7 +71,7 @@ namespace Wallet
 
         }
 
-        /*private void populateCostList()
+        private void populateCostList()
         {
            float total = 0;
            var simbol = System.Globalization.RegionInfo.CurrentRegion.CurrencySymbol;
@@ -83,9 +83,9 @@ namespace Wallet
                 String ls = a.ActivityId + " " + a.Price + " " + simbol + " " + a.Date.ToString(System.Globalization.DateTimeFormatInfo.CurrentInfo);
                 CostList.Items.Add(ls);
             }
-            AccountText.Text = total.ToString();
+            //AccountText.Text = total.ToString();
 
-        }*/
+        }
 
     }
 }
