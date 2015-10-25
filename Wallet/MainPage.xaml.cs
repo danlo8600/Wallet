@@ -108,6 +108,20 @@ namespace Wallet
 
         private void addCostButton_click(object sender, RoutedEventArgs e)
         {
+            float val = 0.0f;
+            string date = null;
+            DateTime preDate;
+
+            date = costDate.Date.ToString();
+            preDate = DateTime.Parse(date);
+
+            val = float.Parse(CostValue.Text);
+
+            opp.setCost("ActivityID", val, preDate, "");
+        }
+
+        private void addActivit(object sender, RoutedEventArgs e)
+        {
 
         }
 
