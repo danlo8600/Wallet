@@ -39,7 +39,7 @@
                         <RadioButton x:Name="addAccount" MinWidth="40" MinHeight="40" Background="Transparent" UseSystemFocusVisuals="True" TabNavigation="Once" UseLayoutRounding="True" Style="{StaticResource RadioButtonMenu}" Click="addAccount_Click">
                             <StackPanel Orientation="Horizontal" Width="auto" Height="auto">
                                 <SymbolIcon Symbol="Add" />
-                                <TextBlock Text="Add Account" FontSize="23" Margin="12,0,0,0" />
+                                <TextBlock Text="Add Bill" FontSize="23" Margin="12,0,0,0" />
                             </StackPanel>
                         </RadioButton>
                     </StackPanel>
@@ -75,58 +75,80 @@
                             <TextBlock Text="In Evidence" FontWeight="Black" HorizontalAlignment="Center"/>
                             <ListView x:Name="InEvidenceList" ScrollViewer.VerticalScrollBarVisibility="Hidden" />
                             <!--FlyOutAddCost-->
-                            <StackPanel Height="auto" Width="auto" HorizontalAlignment="Right">
-                                <FlyoutPresenter x:Name="flyAddCost" Visibility="Collapsed">
-                                    <StackPanel Orientation="Vertical">
-                                        <CalendarDatePicker x:Name="costDate"/>
-                                        <StackPanel Orientation="Horizontal" Margin="0, 5, 0, 0">
-                                            <TextBlock Text="SelectEvemnt" />
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal" Margin="0, 5, 0, 0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <FlyoutPresenter Grid.Column="0" x:Name="flyAddCost" Visibility="Collapsed">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="1*"/>
+                                            <RowDefinition Height="1*"/>
+                                            <RowDefinition Height="1*"/>
+                                            <RowDefinition Height="1*"/>
+                                            <RowDefinition Height="1*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock Grid.Row="0" Height="auto" FontWeight="Bold" Text="Add Cost" TextAlignment="Left" Margin="10, 0, 0, 15"/>
+                                        <CalendarDatePicker Grid.Row="1" x:Name="costDate" HorizontalAlignment="Center" Margin="0, 0, 0, 15"/>
+                                        <TextBlock Grid.Row="2" Text="SelectEvemnt" TextAlignment="Center" HorizontalAlignment="Center" Margin="0, 0, 0, 15"/>
+                                        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 0, 0, 15">
                                             <TextBlock Text="Cost" />
-                                            <TextBox x:Name="Cost" Width="135"/>
+                                            <TextBox x:Name="Cost" Width="200"/>
                                         </StackPanel>
-                                        <StackPanel Orientation="Horizontal" Margin="0, 5, 0, 0">
-                                            <Button x:Name="AddCostButton" Width="168" Content="Add"/>
-                                        </StackPanel>
-                                    </StackPanel>
+                                        <Button Grid.Row="4" x:Name="AddCostButton" Width="200" Content="Add" HorizontalAlignment="Center" Margin="0, 0, 0, 15" Click="addCostButton_click"/>
+                                    </Grid>
                                 </FlyoutPresenter>
-                            </StackPanel>
+                            </Grid>
                             <!--FlyOutAddActivity-->
-                            <StackPanel HorizontalAlignment="Right">
-                                <FlyoutPresenter x:Name="flyAddActivity" Visibility="Collapsed">
-                                    <StackPanel Orientation="Vertical">
-                                        <StackPanel Orientation="Horizontal" Margin="0, 5, 0, 0">
-                                            <TextBlock Text="SelectEvemnt" />
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal" Margin="0, 5, 0, 0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <FlyoutPresenter Grid.Column="0" x:Name="flyAddActivity" Visibility="Collapsed">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="1*"/>
+                                            <RowDefinition Height="1*"/>
+                                            <RowDefinition Height="1*"/>
+                                            <RowDefinition Height="1*"/>
+                                            <RowDefinition Height="1*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock Grid.Row="0" Height="auto" FontWeight="Bold" Text="Add Cost" TextAlignment="Left" Margin="10, 0, 0, 15"/>
+                                        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 0, 0, 15">
                                             <TextBlock Text="Activity" />
-                                            <TextBox x:Name="Activity" Width="135"/>
+                                            <TextBox x:Name="Activity" Width="200"/>
                                         </StackPanel>
-                                        <StackPanel Orientation="Horizontal" Margin="0, 5, 0, 0">
-                                            <Button x:Name="AddActivityButton" Width="168" Content="Add"/>
-                                        </StackPanel>
-                                    </StackPanel>
+                                        <Button Grid.Row="4" x:Name="AddActivityButton" Width="200" Content="Add" HorizontalAlignment="Center" Margin="0, 0, 0, 15"/>
+                                    </Grid>
                                 </FlyoutPresenter>
-                            </StackPanel>
+                            </Grid>
                             <!--FlyOutAddAccount-->
-                            <StackPanel HorizontalAlignment="Right">
-                                <FlyoutPresenter x:Name="flyAddAccount" Visibility="Collapsed">
-                                    <StackPanel Orientation="Vertical">
-                                        <CalendarDatePicker x:Name="AccountDate"/>
-                                        <StackPanel Orientation="Horizontal" Margin="0, 5, 0, 0">
-                                            <TextBlock Text="SelectEvemnt" />
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <FlyoutPresenter Grid.Column="0" x:Name="flyAddAccount" Visibility="Collapsed">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="1*"/>
+                                            <RowDefinition Height="1*"/>
+                                            <RowDefinition Height="1*"/>
+                                            <RowDefinition Height="1*"/>
+                                            <RowDefinition Height="1*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock Grid.Row="0" Height="auto" FontWeight="Bold" Text="Add Bill" TextAlignment="Left" Margin="10, 0, 0, 15"/>
+                                        <CalendarDatePicker Grid.Row="1" x:Name="accountDate" HorizontalAlignment="Center" Margin="0, 0, 0, 15"/>
+                                        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 0, 0, 15">
+                                            <TextBlock Text="Amount" />
+                                            <TextBox x:Name="Account" Width="200"/>
                                         </StackPanel>
-                                        <StackPanel Orientation="Horizontal" Margin="0, 5, 0, 0">
-                                            <TextBlock Text="Account" />
-                                            <TextBox x:Name="Account" Width="135"/>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal" Margin="0, 5, 0, 0">
-                                            <Button x:Name="AddAccountButton" Width="168" Content="Add"/>
-                                        </StackPanel>
-                                    </StackPanel>
+                                        <Button Grid.Row="4" x:Name="AddAccountButton" Width="200" Content="Add" HorizontalAlignment="Center" Margin="0, 0, 0, 15"/>
+                                    </Grid>
                                 </FlyoutPresenter>
-                            </StackPanel>
+                            </Grid>
                         </StackPanel>
                     </Grid>
                     <!--CountBar-->

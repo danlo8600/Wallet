@@ -45,6 +45,8 @@ namespace Wallet
 
         }
 
+        /*** Hamburger Menu Content ***/ 
+
         private void hMenu_Click(object sender, RoutedEventArgs e)
         {
             FirstShell.IsPaneOpen = !FirstShell.IsPaneOpen;
@@ -58,10 +60,14 @@ namespace Wallet
             }
         }
 
+        /*** Hamburger Menu Button ***/
+
         private void addCost_Click(object sender, RoutedEventArgs e)
         {
             if (flyAddCost.Visibility == Visibility.Collapsed)
             {
+                flyAddAccount.Visibility = Visibility.Collapsed;
+                flyAddActivity.Visibility = Visibility.Collapsed;
                 flyAddCost.Visibility = Visibility.Visible;
             }
             else
@@ -74,6 +80,8 @@ namespace Wallet
         {
             if (flyAddActivity.Visibility == Visibility.Collapsed)
             {
+                flyAddAccount.Visibility = Visibility.Collapsed;
+                flyAddCost.Visibility = Visibility.Collapsed;
                 flyAddActivity.Visibility = Visibility.Visible;
             }
             else
@@ -86,6 +94,8 @@ namespace Wallet
         {
             if (flyAddAccount.Visibility == Visibility.Collapsed)
             {
+                flyAddActivity.Visibility = Visibility.Collapsed;
+                flyAddCost.Visibility = Visibility.Collapsed;
                 flyAddAccount.Visibility = Visibility.Visible;
             }
             else
@@ -93,6 +103,15 @@ namespace Wallet
                 flyAddAccount.Visibility = Visibility.Collapsed;
             }
         }
+
+        /*** Add Actions ***/
+
+        private void addCostButton_click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        /*** Populate ListViews ***/
 
         private void populateActivityList()
         {
@@ -121,6 +140,7 @@ namespace Wallet
             Partial.Text = act + ": " + total.ToString() + simbol;
         }
 
+        /*** Select Item from ListView Operations ***/
 
         private void ActivityCostClick(object sender, ItemClickEventArgs e)
         {
@@ -137,6 +157,5 @@ namespace Wallet
             CostList.Items.Clear();
             populateCostsList(act);
         }
-
     }
 }
