@@ -43,7 +43,7 @@
                             </StackPanel>
                         </RadioButton>
                     </StackPanel>
-                    <CalendarView x:Name="Calendar" IsTabStop="False" NumberOfWeeksInView="6" HorizontalAlignment="Center" HorizontalDayItemAlignment="Center" UseLayoutRounding="True" RenderTransformOrigin="0.5,0" CalendarItemBackground="#FFCFCFCF" Background="#FFF2F2F2" BorderBrush="#FFF2F2F2" SelectionMode="Multiple" SelectedDatesChanged="selectedDate_Click" />
+                    <CalendarView x:Name="Calendar" IsTabStop="False" NumberOfWeeksInView="6" HorizontalAlignment="Center" HorizontalDayItemAlignment="Center" UseLayoutRounding="True" RenderTransformOrigin="0.5,0" CalendarItemBackground="#FFDEDCDC" Background="#FFF2F2F2" BorderBrush="#FFF2F2F2" SelectionMode="Multiple" SelectedDatesChanged="selectedDate_Click" />
                 </StackPanel>
             </SplitView.Pane>
             <!--Close SplitPane-->
