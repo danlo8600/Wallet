@@ -43,8 +43,7 @@
                             </StackPanel>
                         </RadioButton>
                     </StackPanel>
-                    <CalendarView x:Name="Calendar" Style="{StaticResource CalendarViewStyleMod}" IsTabStop="False" NumberOfWeeksInView="6" HorizontalAlignment="Left" MaxWidth="223" Padding="0" HorizontalDayItemAlignment="Center" UseLayoutRounding="True" RenderTransformOrigin="0.5,0" CalendarItemBackground="#FFCFCFCF" Background="#FFF2F2F2" BorderBrush="#FFF2F2F2" SelectionMode="Multiple"  />
-                    <StackPanel/>
+                    <CalendarView x:Name="Calendar" IsTabStop="False" NumberOfWeeksInView="6" HorizontalAlignment="Center" HorizontalDayItemAlignment="Center" UseLayoutRounding="True" RenderTransformOrigin="0.5,0" CalendarItemBackground="#FFCFCFCF" Background="#FFF2F2F2" BorderBrush="#FFF2F2F2" SelectionMode="Multiple" />
                 </StackPanel>
             </SplitView.Pane>
             <!--Close SplitPane-->
@@ -61,19 +60,12 @@
                             <ColumnDefinition Width="4*"/>
                             <ColumnDefinition Width="3*" />
                         </Grid.ColumnDefinitions>
+                        <!--ActivityList-->
                         <StackPanel Grid.Column="0" Orientation="Vertical" Margin="0, 0, 5, 0">
                             <TextBlock Text="Activity" FontWeight="Black" HorizontalAlignment="Center"/>
                             <ListView x:Name="ActivityList" ScrollViewer.VerticalScrollBarVisibility="Auto" Background="White" SelectedIndex="0" IsItemClickEnabled="True" ItemClick="ActivityCostClick" >
                                 <TextBlock x:Name="AllActivity" Text="All" />
                             </ListView>
-                        </StackPanel>
-                        <StackPanel Grid.Column="1" Orientation="Vertical" Margin="0, 0, 5, 0">
-                            <TextBlock Text="Costs" FontWeight="Black" HorizontalAlignment="Center"/>
-                            <ListView x:Name="CostList" ScrollViewer.VerticalScrollBarVisibility="Hidden" />
-                        </StackPanel>
-                        <StackPanel Grid.Column="2" Orientation="Vertical">
-                            <TextBlock Text="In Evidence" FontWeight="Black" HorizontalAlignment="Center"/>
-                            <ListView x:Name="InEvidenceList" ScrollViewer.VerticalScrollBarVisibility="Hidden" />
                             <!--FlyOutAddCost-->
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -94,7 +86,7 @@
                                         <TextBlock Grid.Row="2" Text="SelectEvemnt" TextAlignment="Center" HorizontalAlignment="Center" Margin="0, 0, 0, 15"/>
                                         <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 0, 0, 15">
                                             <TextBlock Text="Cost" />
-                                            <TextBox x:Name="Cost" Width="200"/>
+                                            <TextBox x:Name="Cost" Width="160"/>
                                         </StackPanel>
                                         <Button Grid.Row="4" x:Name="AddCostButton" Width="200" Content="Add" HorizontalAlignment="Center" Margin="0, 0, 0, 15" Click="addCostButton_click"/>
                                     </Grid>
@@ -149,6 +141,16 @@
                                     </Grid>
                                 </FlyoutPresenter>
                             </Grid>
+                        </StackPanel>
+                        <!--CostList-->
+                        <StackPanel Grid.Column="1" Orientation="Vertical" Margin="0, 0, 5, 0">
+                            <TextBlock Text="Costs" FontWeight="Black" HorizontalAlignment="Center"/>
+                            <ListView x:Name="CostList" ScrollViewer.VerticalScrollBarVisibility="Hidden" />
+                        </StackPanel>
+                        <!--InEvidenceList-->
+                        <StackPanel Grid.Column="2" Orientation="Vertical">
+                            <TextBlock Text="In Evidence" FontWeight="Black" HorizontalAlignment="Center"/>
+                            <ListView x:Name="InEvidenceList" ScrollViewer.VerticalScrollBarVisibility="Hidden" />
                         </StackPanel>
                     </Grid>
                     <!--CountBar-->
