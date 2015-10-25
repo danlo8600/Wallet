@@ -157,5 +157,10 @@ namespace Wallet
             CostList.Items.Clear();
             populateCostsList(act);
         }
+
+        private void selectedDate_Click(CalendarView sender, CalendarViewSelectedDatesChangedEventArgs args)
+        {
+
+        }
     }
 }

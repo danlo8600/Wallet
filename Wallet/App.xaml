@@ -48,19 +48,8 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
-       <!--Calendar Mod Style-->
-        <Style TargetType="CalendarDatePicker">
-            <Setter Property="MinHeight" Value="35" />
-            <Setter Property="MinWidth" Value="35" />
-            <Setter Property="MaxHeight" Value="35" />
-            <Setter Property="MaxWidth" Value="35" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="CalendarDatePicker" />
-                </Setter.Value>
-            </Setter>
-        </Style>
+
+        <!--Calendar Mod Style-->
         <Style TargetType="CalendarViewDayItem">
             <Setter Property="MinWidth" Value="25" />
             <Setter Property="MinHeight" Value="25" />
@@ -74,5 +63,6 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
     </Application.Resources>
 </Application>

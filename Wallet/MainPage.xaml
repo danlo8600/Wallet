@@ -8,7 +8,7 @@
     mc:Ignorable="d">
 
     <Grid>
-        <SplitView x:Name="FirstShell" IsPaneOpen="True" CompactPaneLength="40" OpenPaneLength="225" DisplayMode="CompactInline" Background="White">
+        <SplitView x:Name="FirstShell" IsPaneOpen="True" CompactPaneLength="40" OpenPaneLength="210" DisplayMode="CompactInline" Background="White">
             <!--Start SplitPane-->
             <SplitView.Pane>
                 <StackPanel Margin="2, 10, 0, 0" >
@@ -43,7 +43,7 @@
                             </StackPanel>
                         </RadioButton>
                     </StackPanel>
-                    <CalendarView x:Name="Calendar" IsTabStop="False" NumberOfWeeksInView="6" HorizontalAlignment="Center" HorizontalDayItemAlignment="Center" UseLayoutRounding="True" RenderTransformOrigin="0.5,0" CalendarItemBackground="#FFCFCFCF" Background="#FFF2F2F2" BorderBrush="#FFF2F2F2" SelectionMode="Multiple" />
+                    <CalendarView x:Name="Calendar" IsTabStop="False" NumberOfWeeksInView="6" HorizontalAlignment="Center" HorizontalDayItemAlignment="Center" UseLayoutRounding="True" RenderTransformOrigin="0.5,0" CalendarItemBackground="#FFCFCFCF" Background="#FFF2F2F2" BorderBrush="#FFF2F2F2" SelectionMode="Multiple" SelectedDatesChanged="selectedDate_Click" />
                 </StackPanel>
             </SplitView.Pane>
             <!--Close SplitPane-->
