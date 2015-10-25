@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Navigation;
 using Windows.Storage;
 using Wallet.DbManager;
 using System.Globalization;
+using System.Diagnostics;
 // Il modello di elemento per la pagina vuota è documentato all'indirizzo http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x410
 
 namespace Wallet
@@ -37,7 +38,8 @@ namespace Wallet
 
             //DateTime date = DateTime.Now;
             //opp.setCost("Scontrino", 20, date , "Prova");
-            populateCostList();
+            populateActivityList();
+            populateCostsList("All");
             //opp.setActivity("Biglietto", "Descrizione di prova2");
             //opp.removeActivity("Biglietto");
 
@@ -58,33 +60,82 @@ namespace Wallet
 
         private void addCost_Click(object sender, RoutedEventArgs e)
         {
-            //opp.setCost();
+            if (flyAddCost.Visibility == Visibility.Collapsed)
+            {
+                flyAddCost.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                flyAddCost.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void addActivity_Click(object sender, RoutedEventArgs e)
         {
-        
+            if (flyAddActivity.Visibility == Visibility.Collapsed)
+            {
+                flyAddActivity.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                flyAddActivity.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void addAccount_Click(object sender, RoutedEventArgs e)
         {
-
+            if (flyAddAccount.Visibility == Visibility.Collapsed)
+            {
+                flyAddAccount.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                flyAddAccount.Visibility = Visibility.Collapsed;
+            }
         }
 
-        private void populateCostList()
+        private void populateActivityList()
         {
-           float total = 0;
-           var simbol = System.Globalization.RegionInfo.CurrentRegion.CurrencySymbol;
-
-            List<Cost> act = opp.getCost();
+            List<Activity> act = opp.getActivity();
             foreach(var a in act)
+            {
+                ActivityList.Items.Add(a.Id);
+            }
+        }
+
+
+        private void populateCostsList(string act)
+        {
+            float total = 0;
+            var simbol = System.Globalization.RegionInfo.CurrentRegion.CurrencySymbol;
+            List<Cost> costs = null;
+
+            costs = opp.getCosts(act);
+
+            foreach (var a in costs)
             {
                 total += a.Price;
                 String ls = a.ActivityId + " " + a.Price + " " + simbol + " " + a.Date.ToString(System.Globalization.DateTimeFormatInfo.CurrentInfo);
                 CostList.Items.Add(ls);
             }
-            //AccountText.Text = total.ToString();
+            Partial.Text = act + ": " + total.ToString() + simbol;
+        }
 
+
+        private void ActivityCostClick(object sender, ItemClickEventArgs e)
+        {
+            string act = null;
+
+            if (e.ClickedItem is Windows.UI.Xaml.Controls.TextBlock)
+            {
+                act = "All"; 
+            }
+            else
+            {
+                act = e.ClickedItem.ToString();
+            }
+            CostList.Items.Clear();
+            populateCostsList(act);
         }
 
     }

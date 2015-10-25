@@ -137,10 +137,18 @@ namespace Wallet.DbManager
         }
 
         //Get all data from exsisting Cost
-        public List<Cost> getCost()
+        public List<Cost> getCosts(string act)
         {
-            var res = db.Query<Cost>("select * from Cost");
-            return res;
+            if (act == "All")
+            {
+                var res = db.Query<Cost>("select * from Cost");
+                return res;
+            }
+            else
+            {
+                var res = db.Query<Cost>("select * from Cost where ActivityId = " + "'" + act + "'");
+                return res;
+            }
         }
 
         //Remove an exsisting Cost
