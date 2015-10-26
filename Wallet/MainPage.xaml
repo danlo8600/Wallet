@@ -63,14 +63,14 @@
                         <!--ActivityList-->
                         <StackPanel Grid.Column="0" Orientation="Vertical" Margin="0, 0, 5, 0">
                             <TextBlock Text="Activity" FontWeight="Black" HorizontalAlignment="Center"/>
-                            <ListView x:Name="ActivityList" ScrollViewer.VerticalScrollBarVisibility="Auto" Background="White" SelectedIndex="0" IsItemClickEnabled="True" ItemClick="ActivityCostClick" >
+                            <ListView x:Name="ActivityList" ScrollViewer.VerticalScrollBarVisibility="Auto" SelectedIndex="0" IsItemClickEnabled="True" ItemClick="ActivityCostClick" >
                                 <TextBlock x:Name="AllActivity" Text="All" />
                             </ListView>
                         </StackPanel>
                         <!--CostList-->
                         <StackPanel Grid.Column="1" Orientation="Vertical" Margin="0, 0, 5, 0">
                             <TextBlock Text="Costs" FontWeight="Black" HorizontalAlignment="Center"/>
-                            <ListView x:Name="CostList" ScrollViewer.VerticalScrollBarVisibility="Hidden" />
+                            <ListView x:Name="CostList" ScrollViewer.VerticalScrollBarVisibility="Visible" />
                         </StackPanel>
                         <!--InEvidenceList-->
                         <StackPanel Grid.Column="2" Orientation="Vertical">
@@ -93,9 +93,9 @@
 
                                         <TextBlock Grid.Row="0" Height="auto" FontWeight="Bold" Text="Add Cost" TextAlignment="Left" Margin="10, 0, 0, 15"/>
                                         <CalendarDatePicker x:Name="costDate" Grid.Row="1" HorizontalAlignment="Center" Margin="0, 0, 0, 15"/>
-                                        <TextBlock Grid.Row="2" Text="SelectEvemnt" TextAlignment="Center" HorizontalAlignment="Center" Margin="0, 0, 0, 15"/>
+                                        <ComboBox x:Name="ComboCost" Grid.Row="2" HorizontalAlignment="Center" Width="200" Margin="0, 0, 0, 15"/>
                                         <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 0, 0, 15">
-                                            <TextBlock Text="Cost" />
+                                            <TextBlock Text="Cost" Margin="0, 5, 5, 0"/>
                                             <TextBox x:Name="CostValue" Width="160"/>
                                         </StackPanel>
                                         <Button Grid.Row="4" x:Name="AddCostButton" Width="200" Content="Add" HorizontalAlignment="Center" Margin="0, 0, 0, 15" Click="addCostButton_click"/>
@@ -107,7 +107,7 @@
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <FlyoutPresenter Grid.Column="0" x:Name="flyAddActivity" Visibility="Collapsed">
+                                <FlyoutPresenter x:Name="flyAddActivity" Grid.Column="0" Visibility="Collapsed">
                                     <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="1*"/>

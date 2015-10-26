@@ -115,8 +115,7 @@ namespace Wallet.DbManager
                     Date = date,
                     Description = description,
                     Price = value
-                });
-
+            });
                 return succes;
             }
             catch (System.NullReferenceException SYSEX)

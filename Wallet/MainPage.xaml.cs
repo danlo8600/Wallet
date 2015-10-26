@@ -16,6 +16,7 @@ using Windows.Storage;
 using Wallet.DbManager;
 using System.Globalization;
 using System.Diagnostics;
+using System.Collections.ObjectModel;
 // Il modello di elemento per la pagina vuota è documentato all'indirizzo http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x410
 
 namespace Wallet
@@ -45,7 +46,7 @@ namespace Wallet
 
         }
 
-        /*** Hamburger Menu Content ***/ 
+        /*** Hamburger Menu Show / Hide Content ***/ 
 
         private void hMenu_Click(object sender, RoutedEventArgs e)
         {
@@ -64,8 +65,17 @@ namespace Wallet
 
         private void addCost_Click(object sender, RoutedEventArgs e)
         {
+
             if (flyAddCost.Visibility == Visibility.Collapsed)
             {
+                ObservableCollection<string> act = new ObservableCollection<string>();
+
+                foreach (var a in opp.getActivity())
+                {
+                    act.Add(a.Id);
+                }
+                ComboCost.ItemsSource = act;
+
                 flyAddAccount.Visibility = Visibility.Collapsed;
                 flyAddActivity.Visibility = Visibility.Collapsed;
                 flyAddCost.Visibility = Visibility.Visible;
@@ -111,18 +121,28 @@ namespace Wallet
             float val = 0.0f;
             string date = null;
             DateTime preDate;
+            string act = ComboCost.SelectedItem.ToString();
 
             date = costDate.Date.ToString();
             preDate = DateTime.Parse(date);
 
             val = float.Parse(CostValue.Text);
 
-            opp.setCost("ActivityID", val, preDate, "");
+            opp.setCost(act, val, preDate, "Coming Soon");
+            populateCostsList(act);
+            ActivityList.SelectedItem = act;
+            addCost_Click(null, null);
         }
 
         private void addActivit(object sender, RoutedEventArgs e)
         {
+            string newact = Activity.Text;
 
+            opp.setActivity(newact , "Coming Soon");
+            populateActivityList();
+            ActivityList.SelectedItem = newact;
+            populateCostsList(newact);
+            addActivity_Click(null, null);
         }
 
         /*** Populate ListViews ***/
@@ -130,6 +150,10 @@ namespace Wallet
         private void populateActivityList()
         {
             List<Activity> act = opp.getActivity();
+
+            ActivityList.Items.Clear();
+            ActivityList.Items.Add("All");
+            
             foreach(var a in act)
             {
                 ActivityList.Items.Add(a.Id);
@@ -142,6 +166,8 @@ namespace Wallet
             float total = 0;
             var simbol = System.Globalization.RegionInfo.CurrentRegion.CurrencySymbol;
             List<Cost> costs = null;
+
+            CostList.Items.Clear();
 
             costs = opp.getCosts(act);
 
@@ -168,7 +194,6 @@ namespace Wallet
             {
                 act = e.ClickedItem.ToString();
             }
-            CostList.Items.Clear();
             populateCostsList(act);
         }
 
