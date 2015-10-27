@@ -149,14 +149,23 @@ namespace Wallet
 
         private void populateActivityList()
         {
-            List<Activity> act = opp.getActivity();
+            List<Activity> act = null;
 
-            ActivityList.Items.Clear();
-            ActivityList.Items.Add("All");
-            
-            foreach(var a in act)
+            try
             {
-                ActivityList.Items.Add(a.Id);
+                act = opp.getActivity();
+
+                ActivityList.Items.Clear();
+                ActivityList.Items.Add("All");
+
+                foreach (var a in act)
+                {
+                    ActivityList.Items.Add(a.Id);
+                }
+            }
+            catch(NullReferenceException NRE)
+            {
+
             }
         }
 

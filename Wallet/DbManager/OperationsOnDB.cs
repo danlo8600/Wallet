@@ -138,15 +138,22 @@ namespace Wallet.DbManager
         //Get all data from exsisting Cost
         public List<Cost> getCosts(string act)
         {
-            if (act == "All")
+            try
             {
-                var res = db.Query<Cost>("select * from Cost");
-                return res;
+                if (act == "All")
+                {
+                    var res = db.Query<Cost>("select * from Cost");
+                    return res;
+                }
+                else
+                {
+                    var res = db.Query<Cost>("select * from Cost where ActivityId = " + "'" + act + "'");
+                    return res;
+                }
             }
-            else
+            catch(NullReferenceException NRE)
             {
-                var res = db.Query<Cost>("select * from Cost where ActivityId = " + "'" + act + "'");
-                return res;
+                return null;
             }
         }
 
