@@ -123,9 +123,9 @@ namespace Wallet
             DateTime preDate;
             string act = ComboCost.SelectedItem.ToString();
 
-            date = costDate.Date.ToString();
-            preDate = DateTime.Parse(date);
-
+            //date = costDate.Date.ToString();
+            //preDate = DateTime.Parse(date);
+            preDate = costDate.Date.DateTime;
             val = float.Parse(CostValue.Text);
 
             opp.setCost(act, val, preDate, "Coming Soon");

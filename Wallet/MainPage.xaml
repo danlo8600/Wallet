@@ -54,34 +54,46 @@
                         <RowDefinition Height="30*" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Grid Height="auto" Grid.Row="0">
+                    <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="2*"/>
                             <ColumnDefinition Width="4*"/>
                             <ColumnDefinition Width="3*" />
                         </Grid.ColumnDefinitions>
                         <!--ActivityList-->
-                        <StackPanel Grid.Column="0" Orientation="Vertical" Margin="0, 0, 5, 0">
-                            <TextBlock Text="Activity" FontWeight="Black" HorizontalAlignment="Center"/>
-                            <ListView x:Name="ActivityList" ScrollViewer.VerticalScrollBarVisibility="Auto" SelectedIndex="0" IsItemClickEnabled="True" ItemClick="ActivityCostClick" >
+                        <Grid Grid.Column="0" Margin="0, 0, 5, 0" Height="auto">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="35*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="Activity" Grid.Row="0" FontWeight="Black" HorizontalAlignment="Center"/>
+                            <ListView x:Name="ActivityList" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Auto" SelectedIndex="0" IsItemClickEnabled="True" ItemClick="ActivityCostClick" >
                                 <TextBlock x:Name="AllActivity" Text="All" />
                             </ListView>
-                        </StackPanel>
+                        </Grid>
                         <!--CostList-->
-                        <StackPanel Grid.Column="1" Orientation="Vertical" Margin="0, 0, 5, 0">
-                            <TextBlock Text="Costs" FontWeight="Black" HorizontalAlignment="Center"/>
-                            <ListView x:Name="CostList" ScrollViewer.VerticalScrollBarVisibility="Visible" />
-                        </StackPanel>
+                        <Grid Grid.Column="1" Margin="0, 0, 5, 0" Height="auto">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="35*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="Costs" Grid.Row="0" FontWeight="Black" HorizontalAlignment="Center"/>
+                            <ListView x:Name="CostList" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Auto" />
+                        </Grid>
                         <!--InEvidenceList-->
-                        <StackPanel Grid.Column="2" Orientation="Vertical">
-                            <TextBlock Text="In Evidence" FontWeight="Black" HorizontalAlignment="Center"/>
-                            <ListView x:Name="InEvidenceList" ScrollViewer.VerticalScrollBarVisibility="Hidden" />
+                        <StackPanel Grid.Column="2" Margin="0, 0, 5, 0" Height="auto">
+                            <!--<Grid.RowDefinitions>
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="35*" />
+                            </Grid.RowDefinitions>-->
+                            <TextBlock Text="In Evidence" Grid.Row="0" FontWeight="Black" HorizontalAlignment="Center"/>
+                            <ListView x:Name="InEvidenceList" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Hidden" />
                             <!--FlyOutAddCost-->
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <FlyoutPresenter Grid.Column="0" x:Name="flyAddCost" Visibility="Collapsed">
+                                <FlyoutPresenter Grid.Column="0" x:Name="flyAddCost" Visibility="Collapsed" Height="300">
                                     <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="1*"/>
@@ -92,7 +104,7 @@
                                         </Grid.RowDefinitions>
 
                                         <TextBlock Grid.Row="0" Height="auto" FontWeight="Bold" Text="Add Cost" TextAlignment="Left" Margin="10, 0, 0, 15"/>
-                                        <CalendarDatePicker x:Name="costDate" Grid.Row="1" HorizontalAlignment="Center" Margin="0, 0, 0, 15"/>
+                                        <DatePicker x:Name="costDate" Grid.Row="1" HorizontalAlignment="Center" Margin="0, 0, 0, 15"/>
                                         <ComboBox x:Name="ComboCost" Grid.Row="2" HorizontalAlignment="Center" Width="200" Margin="0, 0, 0, 15"/>
                                         <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 0, 0, 15">
                                             <TextBlock Text="Cost" Margin="0, 5, 5, 0"/>
