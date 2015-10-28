@@ -30,23 +30,23 @@ namespace Wallet
         private DbManager.CreateDB db = null;
         private DbManager.OperationsOnDB opp = null;
 
+        string simbol = System.Globalization.RegionInfo.CurrentRegion.CurrencySymbol;
+
         public MainPage()
         {
             this.InitializeComponent();
+            /*** Init and Connect DB ***/
             dbFolder = new InitApp.InitFolder().getFolder();
             db = new DbManager.CreateDB(dbFolder);
             opp = new DbManager.OperationsOnDB(db.getConnection());
 
-            //DateTime date = DateTime.Now;
-            //opp.setCost("Scontrino", 20, date , "Prova");
+            /*** Start UI population ***/
             populateActivityList();
             populateCostsList("All");
-            //opp.setActivity("Biglietto", "Descrizione di prova2");
-            //opp.removeActivity("Biglietto");
-
+            populateMyBill();
         }
 
-        /*** Hamburger Menu Show / Hide Content ***/ 
+        /*** Hamburger Menu Show / Hide Content ***/
 
         private void hMenu_Click(object sender, RoutedEventArgs e)
         {
@@ -123,8 +123,6 @@ namespace Wallet
             DateTime preDate;
             string act = ComboCost.SelectedItem.ToString();
 
-            //date = costDate.Date.ToString();
-            //preDate = DateTime.Parse(date);
             preDate = costDate.Date.DateTime;
             val = float.Parse(CostValue.Text);
 
@@ -132,9 +130,10 @@ namespace Wallet
             populateCostsList(act);
             ActivityList.SelectedItem = act;
             addCost_Click(null, null);
+            populateMyBill();
         }
 
-        private void addActivit(object sender, RoutedEventArgs e)
+        private void addActivityButton_click(object sender, RoutedEventArgs e)
         {
             string newact = Activity.Text;
 
@@ -145,7 +144,14 @@ namespace Wallet
             addActivity_Click(null, null);
         }
 
-        /*** Populate ListViews ***/
+        private void addAmountButton_click(object sender, RoutedEventArgs e)
+        {
+            opp.setAccount(float.Parse(amount.Text), amountDate.Date.DateTime, "Coming Soon");
+            populateMyBill();
+            addAccount_Click(null, null);
+        }
+
+        /*** Populate UI ***/
 
         private void populateActivityList()
         {
@@ -173,7 +179,6 @@ namespace Wallet
         private void populateCostsList(string act)
         {
             float total = 0;
-            var simbol = System.Globalization.RegionInfo.CurrentRegion.CurrencySymbol;
             List<Cost> costs = null;
 
             CostList.Items.Clear();
@@ -189,9 +194,31 @@ namespace Wallet
             Partial.Text = act + ": " + total.ToString() + simbol;
         }
 
+
+        private void populateMyBill()
+        {
+            float bill = 0;
+            float cost = 0;
+
+            var accounts = opp.getAccounts();
+            var costs = opp.getCosts("All");
+
+            foreach(var a in accounts)
+            {
+                bill += a.Amount;
+            }
+
+            foreach(var a in costs)
+            {
+                cost += a.Price;
+            }
+
+            MyBill.Text = "Bill: " + (bill - cost).ToString() + simbol;
+        }
+
         /*** Select Item from ListView Operations ***/
 
-        private void ActivityCostClick(object sender, ItemClickEventArgs e)
+        private void activityCostClick(object sender, ItemClickEventArgs e)
         {
             string act = null;
 
