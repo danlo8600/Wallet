@@ -5,6 +5,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.Storage;
 using Wallet.DbManager;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 // Il modello di elemento per la pagina vuota è documentato all'indirizzo http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x410
 
 namespace Wallet
@@ -53,17 +54,28 @@ namespace Wallet
 
         private void addCost_Click(object sender, RoutedEventArgs e)
         {
+            List<Activity> activity = null;
 
             if (flyAddCost.Visibility == Visibility.Collapsed)
             {
                 ObservableCollection<string> act = new ObservableCollection<string>();
 
-                foreach (var a in opp.getActivity())
+                try
                 {
-                    act.Add(a.Id);
-                }
-                ComboCost.ItemsSource = act;
+                    activity = opp.getActivity();
 
+                    foreach (Activity a in activity)
+                    {
+                        act.Add(a.Id);
+                    }
+                    ComboCost.ItemsSource = act;
+
+                }
+                catch (NullReferenceException NRE)
+                {
+
+                }
+                
                 flyAddAccount.Visibility = Visibility.Collapsed;
                 flyAddActivity.Visibility = Visibility.Collapsed;
                 flyAddCost.Visibility = Visibility.Visible;
@@ -109,16 +121,25 @@ namespace Wallet
             float val = 0.0f;
             string date = null;
             DateTime preDate;
-            string act = ComboCost.SelectedItem.ToString();
+            string act = null;
+            try
+            {
+                act = ComboCost.SelectedItem.ToString();
 
-            preDate = costDate.Date.DateTime;
-            val = float.Parse(CostValue.Text);
+                preDate = costDate.Date.DateTime;
+                val = float.Parse(CostValue.Text);
 
-            opp.setCost(act, val, preDate, "Coming Soon");
-            populateCostsList(act);
-            ActivityList.SelectedItem = act;
-            addCost_Click(null, null);
-            populateMyBill();
+                opp.setCost(act, val, preDate, "Coming Soon");
+                populateCostsList(act);
+                ActivityList.SelectedItem = act;
+                addCost_Click(null, null);
+                populateMyBill();
+            }
+            catch (NullReferenceException NRE)
+            {
+
+            }
+            
         }
 
         private void addActivityButton_click(object sender, RoutedEventArgs e)
@@ -171,13 +192,20 @@ namespace Wallet
 
             CostList.Items.Clear();
 
-            costs = opp.getCosts(act);
-
-            foreach (var a in costs)
+            try
             {
-                total += a.Price;
-                String ls = a.ActivityId + " " + a.Price + " " + simbol + " " + a.Date.ToString(System.Globalization.DateTimeFormatInfo.CurrentInfo);
-                CostList.Items.Add(ls);
+                costs = opp.getCosts(act);
+
+                foreach (var a in costs)
+                {
+                    total += a.Price;
+                    String ls = a.ActivityId + " " + a.Price + " " + simbol + " " + a.Date.ToString(System.Globalization.DateTimeFormatInfo.CurrentInfo);
+                    CostList.Items.Add(ls);
+                }
+            }
+            catch(NullReferenceException NRE)
+            {
+                Debug.WriteLine(NRE.Message);
             }
             Partial.Text = act + ": " + total.ToString() + simbol;
         }
@@ -187,18 +215,27 @@ namespace Wallet
         {
             float bill = 0;
             float cost = 0;
+            List<Account> accounts = null;
+            List<Cost> costs = null;
 
-            var accounts = opp.getAccounts();
-            var costs = opp.getCosts("All");
-
-            foreach(var a in accounts)
+            try
             {
-                bill += a.Amount;
+                accounts = opp.getAccounts();
+                costs = opp.getCosts("All");
+
+                foreach (var a in accounts)
+                {
+                    bill += a.Amount;
+                }
+
+                foreach (var a in costs)
+                {
+                    cost += a.Price;
+                }
             }
-
-            foreach(var a in costs)
+            catch(NullReferenceException NRE)
             {
-                cost += a.Price;
+
             }
 
             MyBill.Text = "Bill: " + (bill - cost).ToString() + simbol;
