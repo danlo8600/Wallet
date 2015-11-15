@@ -8,6 +8,43 @@
     mc:Ignorable="d">
 
     <Grid>
+        <!-- Visual State Manager -->
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VSG">
+                <VisualState x:Name="VSM320">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="320"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="FirstShell.IsPaneOpen" Value="False"/>
+                        <Setter Target="Calendar.Visibility" Value="Collapsed" />
+                        <Setter Target="InEvidenceList.Visibility" Value="Collapsed" />
+                        <Setter Target="InEvTXT.Visibility" Value="Collapsed" />
+                        
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="VSM548">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="548"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="FirstShell.IsPaneOpen" Value="False"/>
+                        <Setter Target="Calendar.Visibility" Value="Collapsed" />
+
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="VSM1024">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1024"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+
+
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
         <SplitView x:Name="FirstShell" IsPaneOpen="True" CompactPaneLength="40" OpenPaneLength="210" DisplayMode="CompactInline" Background="White">
             <!--Start SplitPane-->
             <SplitView.Pane>
@@ -86,7 +123,7 @@
                                 <RowDefinition Height="1*" />
                                 <RowDefinition Height="35*" />
                             </Grid.RowDefinitions>
-                            <TextBlock Text="In Evidence" Grid.Row="0" FontWeight="Black" HorizontalAlignment="Center"/>
+                            <TextBlock x:Name="InEvTXT" Text="In Evidence" Grid.Row="0" FontWeight="Black" HorizontalAlignment="Center"/>
                             <ListView x:Name="InEvidenceList" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Hidden" >
                                 <TextBlock Text="Coming soon" FontWeight="Black" TextAlignment="Center"/>
                             </ListView>
@@ -105,7 +142,6 @@
             </SplitView.Content>
             <!--Close SplitContent-->
         </SplitView>
-        
         <!-- FlyOut on Right Side-->
         <!--FlyOutAddCost-->
             <Grid>
