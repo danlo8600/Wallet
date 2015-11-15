@@ -98,7 +98,7 @@
                             <ColumnDefinition Width="3*" />
                         </Grid.ColumnDefinitions>
                         <!--ActivityList-->
-                        <Grid Grid.Column="0" Margin="0, 0, 5, 0" Height="auto">
+                        <Grid x:Name="GActList" Grid.Column="0" Margin="0, 0, 5, 0" Height="auto">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="1*" />
                                 <RowDefinition Height="35*" />
@@ -109,7 +109,7 @@
                             </ListView>
                         </Grid>
                         <!--CostList-->
-                        <Grid Grid.Column="1" Margin="0, 0, 5, 0" Height="auto">
+                        <Grid x:Name="GColList" Grid.Column="1" Margin="0, 0, 5, 0" Height="auto">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="1*" />
                                 <RowDefinition Height="35*" />
@@ -118,7 +118,7 @@
                             <ListView x:Name="CostList" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Auto" />
                         </Grid>
                         <!--InEvidenceList-->
-                        <Grid Grid.Column="2" Margin="0, 0, 5, 0" Height="auto">
+                        <Grid x:Name="GInEvList" Grid.Column="2" Margin="0, 0, 5, 0" Height="auto">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="1*" />
                                 <RowDefinition Height="35*" />
