@@ -7,32 +7,33 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <!-- Visual State Manager -->
         <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="VSG">
+            <VisualStateGroup x:Name="VSM">
+                <!--Visula State for 320px-->
                 <VisualState x:Name="VSM320">
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="320"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="FirstShell.IsPaneOpen" Value="False"/>
+                        <Setter Target="DesktopShell.IsPaneOpen" Value="False"/>
                         <Setter Target="Calendar.Visibility" Value="Collapsed" />
-                        <Setter Target="InEvidenceList.Visibility" Value="Collapsed" />
-                        <Setter Target="InEvTXT.Visibility" Value="Collapsed" />
-                        
+                        <!--<Setter Target="InEvidenceList.Visibility" Value="Collapsed" />
+                        <Setter Target="InEvTXT.Visibility" Value="Collapsed" />-->
                     </VisualState.Setters>
                 </VisualState>
+                <!--Visula State for 548px-->
                 <VisualState x:Name="VSM548">
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="548"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="FirstShell.IsPaneOpen" Value="False"/>
+                        <Setter Target="DesktopShell.IsPaneOpen" Value="False"/>
                         <Setter Target="Calendar.Visibility" Value="Collapsed" />
-
                     </VisualState.Setters>
                 </VisualState>
+                <!--Visula State for 1024px-->
                 <VisualState x:Name="VSM1024">
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="1024"/>
@@ -45,7 +46,7 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
-        <SplitView x:Name="FirstShell" IsPaneOpen="True" CompactPaneLength="40" OpenPaneLength="210" DisplayMode="CompactInline" Background="White">
+        <SplitView x:Name="DesktopShell" IsPaneOpen="True" CompactPaneLength="40" OpenPaneLength="210" DisplayMode="CompactInline" Background="White">
             <!--Start SplitPane-->
             <SplitView.Pane>
                 <StackPanel Margin="2, 10, 0, 0" >
@@ -94,8 +95,8 @@
                     <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="2*"/>
-                            <ColumnDefinition Width="4*"/>
-                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="3*"/>
+                            <!--<ColumnDefinition Width="3*" />-->
                         </Grid.ColumnDefinitions>
                         <!--ActivityList-->
                         <Grid x:Name="GActList" Grid.Column="0" Margin="0, 0, 5, 0" Height="auto">
@@ -118,7 +119,7 @@
                             <ListView x:Name="CostList" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Auto" />
                         </Grid>
                         <!--InEvidenceList-->
-                        <Grid x:Name="GInEvList" Grid.Column="2" Margin="0, 0, 5, 0" Height="auto">
+                        <!--<Grid x:Name="GInEvList" Grid.Column="2" Margin="0, 0, 5, 0" Height="auto">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="1*" />
                                 <RowDefinition Height="35*" />
@@ -127,7 +128,7 @@
                             <ListView x:Name="InEvidenceList" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Hidden" >
                                 <TextBlock Text="Coming soon" FontWeight="Black" TextAlignment="Center"/>
                             </ListView>
-                        </Grid>
+                        </Grid>-->
                     </Grid>
                     <!--CountBar-->
                     <Grid Grid.Row="1">
