@@ -207,7 +207,7 @@ namespace Wallet
             {
                 Debug.WriteLine(NRE.Message);
             }
-            //Partial.Text = act + ": " + total.ToString() + simbol;
+            Partial.Text = act + ": " + total.ToString() + simbol;
         }
 
 
@@ -238,7 +238,7 @@ namespace Wallet
 
             }
 
-            //MyBill.Text = "Bill: " + (bill - cost).ToString() + simbol;
+            MyBill.Text = "Bill: " + (bill - cost).ToString() + simbol;
         }
 
         /*** Select Item from ListView Operations ***/

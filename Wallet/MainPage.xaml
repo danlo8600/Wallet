@@ -99,6 +99,10 @@
                                 <RowDefinition Height="1*" />
                                 <RowDefinition Height="35*" />
                             </Grid.RowDefinitions>
+                            <TextBlock Text="Activity" FontWeight="Black" HorizontalAlignment="Center"/>
+                            <ListView x:Name="ActivityList" Grid.Column="0" ScrollViewer.VerticalScrollBarVisibility="Auto" SelectedIndex="0" IsItemClickEnabled="True" ItemClick="activityCostClick" >
+                                <TextBlock x:Name="AllActivity" Text="All" />
+                            </ListView>
                         </Grid>
                         <!--CostList-->
                         <Grid x:Name="GColList" Grid.Column="1" Margin="0, 0, 5, 0" Height="auto">
