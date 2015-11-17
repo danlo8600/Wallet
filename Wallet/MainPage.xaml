@@ -41,7 +41,7 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
-        <SplitView x:Name="DesktopShell" IsPaneOpen="True" CompactPaneLength="40" OpenPaneLength="210" DisplayMode="CompactInline" Background="White">
+        <SplitView x:Name="DesktopShell" IsPaneOpen="True" CompactPaneLength="40" OpenPaneLength="210" DisplayMode="CompactInline">
             <!--Start SplitPane-->
             <SplitView.Pane>
                 <StackPanel Margin="2, 10, 0, 0" >
@@ -84,44 +84,37 @@
             <!--Start SplitContent-->
             <SplitView.Content>
                 <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="30*" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <Grid Grid.Row="0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="2*"/>
-                            <ColumnDefinition Width="3*"/>
-                        </Grid.ColumnDefinitions>
-                        <!--ActivityList-->
-                        <Grid x:Name="GActList" Grid.Column="0" Margin="0, 0, 5, 0" Height="auto">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="1*" />
-                                <RowDefinition Height="35*" />
-                            </Grid.RowDefinitions>
-                            <TextBlock Text="Activity" FontWeight="Black" HorizontalAlignment="Center"/>
-                            <ListView x:Name="ActivityList" Grid.Column="0" ScrollViewer.VerticalScrollBarVisibility="Auto" SelectedIndex="0" IsItemClickEnabled="True" ItemClick="activityCostClick" >
-                                <TextBlock x:Name="AllActivity" Text="All" />
-                            </ListView>
-                        </Grid>
-                        <!--CostList-->
-                        <Grid x:Name="GColList" Grid.Column="1" Margin="0, 0, 5, 0" Height="auto">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="1*" />
-                                <RowDefinition Height="35*" />
-                            </Grid.RowDefinitions>
-                            <TextBlock Text="Costs" Grid.Row="0" FontWeight="Black" HorizontalAlignment="Center"/>
-                            <ListView x:Name="CostList" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Auto" />
-                        </Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="3*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid x:Name="GridActivity" Grid.Column="0" BorderBrush="LightGray" BorderThickness="0, 0, 1, 0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="30*" />
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="0" BorderBrush="LightGray" BorderThickness="0, 0, 0, 1" />
+                        <Border Grid.Row="3" BorderBrush="LightGray" BorderThickness="0, 1, 0, 0" />
+                        <TextBlock Text="Activity" Grid.Row="0" FontWeight="Black" HorizontalAlignment="Center" />
+                        <ListView x:Name="ActivityList" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Auto" SelectedIndex="0" IsItemClickEnabled="True" ItemClick="activityCostClick">
+                            <TextBlock x:Name="AllActivity" Text="All" />
+                        </ListView>
+                        <TextBlock x:Name="Partial" Grid.Row="3" HorizontalAlignment="Left" />
                     </Grid>
-                    <!--CountBar-->
-                    <Grid Grid.Row="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="4*"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" x:Name="Partial" HorizontalAlignment="Right" />
-                        <TextBlock Grid.Column="1" x:Name="MyBill" HorizontalAlignment="Left" Margin="20, 0, 0, 0 "/>
+
+                    <Grid x:Name="GrifCosts" Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="30*" />
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="0" BorderBrush="LightGray" BorderThickness="0, 0, 0, 1" />
+                        <Border Grid.Row="3" BorderBrush="LightGray" BorderThickness="0, 1, 0, 0" />
+                        <TextBlock Text="Costs" Grid.Row="0" FontWeight="Black" HorizontalAlignment="Center"/>
+                        <ListView x:Name="CostList" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Auto" />
+                        <TextBlock x:Name="MyBill" Grid.Row="2" HorizontalAlignment="Left" Margin="20, 0, 0, 0 "/>
                     </Grid>
                 </Grid>
             </SplitView.Content>
