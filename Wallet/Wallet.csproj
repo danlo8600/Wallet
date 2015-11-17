@@ -109,12 +109,9 @@
     </Compile>
     <Compile Include="DbManager\CreateDB.cs" />
     <Compile Include="DbManager\OperationsOnDB.cs" />
-    <Compile Include="DeviceFamily-Mobile\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ExceptionHandler.cs" />
     <Compile Include="Init\InitFolder.cs" />
-    <Compile Include="DeviceFamily-Desktop\MainPage.xaml.cs">
+    <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -143,11 +140,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="DeviceFamily-Mobile\MainPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="DeviceFamily-Desktop\MainPage.xaml">
+    <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
