@@ -40,14 +40,6 @@ namespace Wallet
         private void hMenu_Click(object sender, RoutedEventArgs e)
         {
             DesktopShell.IsPaneOpen = !DesktopShell.IsPaneOpen;
-            if (!DesktopShell.IsPaneOpen)
-            {
-                //Calendar.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                //Calendar.Visibility = Visibility.Visible;
-            }
         }
 
         /*** Hamburger Menu Button ***/
@@ -175,7 +167,10 @@ namespace Wallet
 
                 foreach (var a in act)
                 {
-                    ActivityList.Items.Add(a.Id);
+                    TextBlock it = new TextBlock();
+                    it.Name = a.Id;
+                    it.Text = a.Id;
+                    ActivityList.Items.Add(it);
                 }
             }
             catch(NullReferenceException NRE)
@@ -198,9 +193,13 @@ namespace Wallet
 
                 foreach (var a in costs)
                 {
+                    TextBlock it = new TextBlock();
                     total += a.Price;
-                    String ls = a.ActivityId + " " + a.Price + " " + simbol + " " + a.Date.ToString(System.Globalization.DateTimeFormatInfo.CurrentInfo);
-                    CostList.Items.Add(ls);
+                    it.Name = a.IdCost.ToString();
+                    it.Text = a.ActivityId + " " + a.Price + " " + simbol + " " + a.Date.ToString(System.Globalization.DateTimeFormatInfo.CurrentInfo);
+                    CostList.Items.Add(it);
+
+                    Debug.WriteLine(it.Name);
                 }
             }
             catch(NullReferenceException NRE)

@@ -109,9 +109,6 @@
     </Compile>
     <Compile Include="DbManager\CreateDB.cs" />
     <Compile Include="DbManager\OperationsOnDB.cs" />
-    <Compile Include="DeviceFamily-Mobile\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ExceptionHandler.cs" />
     <Compile Include="Init\InitFolder.cs" />
     <Compile Include="MainPage.xaml.cs">
@@ -156,7 +153,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <SDKReference Include="SQLite.UAP.2015, Version=3.9.1">
+    <SDKReference Include="SQLite.UAP.2015, Version=3.9.2">
       <Name>SQLite for Universal App Platform</Name>
     </SDKReference>
   </ItemGroup>
