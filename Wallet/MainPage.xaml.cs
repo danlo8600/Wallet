@@ -30,7 +30,7 @@ namespace Wallet
             opp = new DbManager.OperationsOnDB(db.getConnection());
 
             /*** Start UI population ***/
-            populateActivityList();
+            populateActivityList(false);
             populateCostsList("All");
             populateMyBill();
         }
@@ -46,7 +46,7 @@ namespace Wallet
 
         private void addCost_Click(object sender, RoutedEventArgs e)
         {
-            List<Activity> activity = null;
+            List<setActivity> activity = null;
 
             if (flyAddCost.Visibility == Visibility.Collapsed)
             {
@@ -56,7 +56,7 @@ namespace Wallet
                 {
                     activity = opp.getActivity();
 
-                    foreach (Activity a in activity)
+                    foreach (setActivity a in activity)
                     {
                         act.Add(a.Id);
                     }
@@ -136,11 +136,10 @@ namespace Wallet
 
         private void addActivityButton_click(object sender, RoutedEventArgs e)
         {
-            string newact = Activity.Text;
+            string newact = setActivity.Text;
 
             opp.setActivity(newact , "Coming Soon");
-            populateActivityList();
-            ActivityList.SelectedItem = newact;
+            populateActivityList(true);
             populateCostsList(newact);
             addActivity_Click(null, null);
         }
@@ -154,9 +153,10 @@ namespace Wallet
 
         /*** Populate UI ***/
 
-        private void populateActivityList()
+        private void populateActivityList(bool repop)
         {
-            List<Activity> act = null;
+            List<setActivity> act = null;
+            TextBlock it = null;
 
             try
             {
@@ -167,11 +167,20 @@ namespace Wallet
 
                 foreach (var a in act)
                 {
-                    TextBlock it = new TextBlock();
+                    it = new TextBlock();
                     it.Name = a.Id;
                     it.Text = a.Id;
                     ActivityList.Items.Add(it);
                 }
+                if (repop)
+                {
+                    ActivityList.SelectedItem = it;
+                }
+                else
+                {
+                    ActivityList.SelectedItem = ActivityList.Items[0];
+                }
+                
             }
             catch(NullReferenceException NRE)
             {
@@ -198,8 +207,6 @@ namespace Wallet
                     it.Name = a.IdCost.ToString();
                     it.Text = a.ActivityId + " " + a.Price + " " + simbol + " " + a.Date.ToString(System.Globalization.DateTimeFormatInfo.CurrentInfo);
                     CostList.Items.Add(it);
-
-                    Debug.WriteLine(it.Name);
                 }
             }
             catch(NullReferenceException NRE)
@@ -244,16 +251,14 @@ namespace Wallet
 
         private void activityCostClick(object sender, ItemClickEventArgs e)
         {
-            string act = null;
+            string act = "All";
 
-            if (e.ClickedItem is Windows.UI.Xaml.Controls.TextBlock)
-            {
-                act = "All"; 
+            TextBlock blk = e.ClickedItem as TextBlock;
+
+            if (blk != null){
+                act = blk.Name;
             }
-            else
-            {
-                act = e.ClickedItem.ToString();
-            }
+
             populateCostsList(act);
         }
 

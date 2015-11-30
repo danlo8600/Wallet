@@ -30,7 +30,7 @@ namespace Wallet.DbManager
             {
                 try
                 {
-                    var s = db.Insert(new Activity()
+                    var s = db.Insert(new setActivity()
                     {
                         Id = activityId,
                         Description = description
@@ -57,7 +57,7 @@ namespace Wallet.DbManager
         {
             try
             {
-                var res = db.Query<Activity>("select * from Activity where Id = " + "'" + activityId + "'");
+                var res = db.Query<setActivity>("select * from Activity where Id = " + "'" + activityId + "'");
 
                 if(res.Count() > 0)
                 {
@@ -81,9 +81,9 @@ namespace Wallet.DbManager
         }
 
         //Get data from all exsisting activities
-        public List<Activity> getActivity()
+        public List<setActivity> getActivity()
         {
-            var res = db.Query<Activity>("select * from Activity");
+            var res = db.Query<setActivity>("select * from Activity");
             return res;
         }
 
@@ -92,7 +92,7 @@ namespace Wallet.DbManager
         {
             if (findActivity(activityId))
             {
-                db.Delete(new Activity(){
+                db.Delete(new setActivity(){
                     Id = activityId
                 });
                 return true;

@@ -20,7 +20,7 @@ namespace Wallet.DbManager
                 db = new SQLiteConnection(new SQLite.Net.Platform.WinRT.SQLitePlatformWinRT(), path);
                 db.CreateTable<Account>();
                 db.CreateTable<Cost>();
-                db.CreateTable<Activity>();
+                db.CreateTable<setActivity>();
             }
             catch(System.NullReferenceException NREEX)
             {
@@ -69,7 +69,7 @@ namespace Wallet.DbManager
     }
 
     [Table("Activity")]
-    public class Activity
+    public class setActivity
     {
         [Column("Id"), PrimaryKey, MaxLength(50)]
         public string Id { get; set; }

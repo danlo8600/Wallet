@@ -18,6 +18,7 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="DesktopShell.IsPaneOpen" Value="False"/>
+                        
                     </VisualState.Setters>
                 </VisualState>
                 <!--Visula State for 548px-->
@@ -150,7 +151,7 @@
                     <TextBlock Grid.Row="0" Height="auto" FontWeight="Bold" Text="Add Cost" TextAlignment="Left" Margin="0, 0, 0, 70"/>
                         <StackPanel Grid.Row="3" Orientation="Vertical" HorizontalAlignment="Center" Margin="0, 0, 0, 30">
                             <TextBlock Text="Activity" HorizontalAlignment="Center" Margin="0, 0, 0, 10" />
-                            <TextBox x:Name="Activity" Width="200" Margin="0, 0, 0, 30"/>
+                            <TextBox x:Name="setActivity" Width="200" Margin="0, 0, 0, 30"/>
                         </StackPanel>
                         <Button Grid.Row="4" x:Name="AddActivityButton" Width="200" Content="Add" HorizontalAlignment="Center" Margin="0, 0, 0, 30" Click="addActivityButton_click"/>
                     </StackPanel>

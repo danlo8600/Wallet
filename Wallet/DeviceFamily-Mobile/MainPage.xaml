@@ -8,6 +8,13 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <SplitView>
+            <SplitView.Pane>
+                <TextBlock>Pane</TextBlock>
+            </SplitView.Pane>
+            <SplitView.Content>
+                <TextBlock>Content</TextBlock>
+            </SplitView.Content>
+        </SplitView>
     </Grid>
 </Page>
