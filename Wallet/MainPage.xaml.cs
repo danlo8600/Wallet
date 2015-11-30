@@ -156,7 +156,8 @@ namespace Wallet
         private void populateActivityList(bool repop)
         {
             List<setActivity> act = null;
-            TextBlock it = null;
+            TextBlock txt = null;
+            StackPanel item = null;
 
             try
             {
@@ -167,14 +168,23 @@ namespace Wallet
 
                 foreach (var a in act)
                 {
-                    it = new TextBlock();
-                    it.Name = a.Id;
-                    it.Text = a.Id;
-                    ActivityList.Items.Add(it);
+                    //item = new StackPanel();
+                    //item.Orientation = Orientation.Horizontal;
+
+                    //txt = new TextBlock();
+                    //txt.Text = a.Id;
+                    //Button bt = new Button();
+                    //bt.Name = a.Id;
+
+                    //item.Children.Add(txt);
+                    //item.Children.Add(bt);
+                    
+                    ActivityList.Items.Add(item);
                 }
+
                 if (repop)
                 {
-                    ActivityList.SelectedItem = it;
+                    ActivityList.SelectedItem = txt;
                 }
                 else
                 {
@@ -187,7 +197,6 @@ namespace Wallet
 
             }
         }
-
 
         private void populateCostsList(string act)
         {
