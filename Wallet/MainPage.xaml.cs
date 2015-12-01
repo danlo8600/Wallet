@@ -177,6 +177,7 @@ namespace Wallet
                     Button bt = new Button();
                     bt.Name = a.Id;
                     bt.Content = new SymbolIcon(Symbol.Delete);
+                    bt.Background = null;                    
 
                     item.Children.Add(txt);
                     item.Children.Add(bt);
@@ -271,6 +272,12 @@ namespace Wallet
             }
 
             populateCostsList(act);
+        }
+
+        private void rmActClick(object sender, ItemClickEventArgs e)
+        {
+            //opp.removeActivity();
+            populateActivityList(true);
         }
 
         private void selectedDate_Click(CalendarView sender, CalendarViewSelectedDatesChangedEventArgs args)
