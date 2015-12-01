@@ -161,39 +161,39 @@ namespace Wallet
 
             try
             {
-                //act = opp.getActivity();
+                act = opp.getActivity();
 
-                //ActivityList.Items.Clear();
-                //ActivityList.Items.Add("All");
+                ActivityList.Items.Clear();
+                ActivityList.Items.Add("All");
 
-                //foreach (var a in act)
-                //{
-                //    item = new StackPanel();
-                //    item.Orientation = Orientation.Horizontal;
+                foreach (var a in act)
+                {
+                    item = new StackPanel();
+                    item.Orientation = Orientation.Horizontal;
 
-                //    txt = new TextBlock();
-                //    txt.Text = a.Id;
-                //    txt.Width = 100;
-                //    Button bt = new Button();
-                //    bt.Name = a.Id;
-                //    bt.Content = new SymbolIcon(Symbol.Delete);
-                //    bt.Background = null;                    
+                    txt = new TextBlock();
+                    txt.Text = a.Id;
+                    txt.Width = 100;
+                    Button bt = new Button();
+                    bt.Name = a.Id;
+                    bt.Content = new SymbolIcon(Symbol.Delete);
+                    bt.Background = null;
 
-                //    item.Children.Add(txt);
-                //    item.Children.Add(bt);
-                    
-                //    ActivityList.Items.Add(item);
-                //}
+                    item.Children.Add(txt);
+                    item.Children.Add(bt);
 
-                //if (repop)
-                //{
-                //    ActivityList.SelectedItem = txt;
-                //}
-                //else
-                //{
-                //    ActivityList.SelectedItem = ActivityList.Items[0];
-                //}
-                
+                    ActivityList.Items.Add(item);
+                }
+
+                if (repop)
+                {
+                    ActivityList.SelectedItem = txt;
+                }
+                else
+                {
+                    ActivityList.SelectedItem = ActivityList.Items[0];
+                }
+
             }
             catch(NullReferenceException NRE)
             {
