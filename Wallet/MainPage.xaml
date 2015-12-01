@@ -5,6 +5,7 @@
     xmlns:local="using:Wallet"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:Wallet"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -101,6 +102,10 @@
                         <TextBlock Text="Activity" Grid.Row="0" FontWeight="Black" HorizontalAlignment="Center" />
                         <ListView x:Name="ActivityList" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Auto" SelectedIndex="0" IsItemClickEnabled="True" ItemClick="activityCostClick">
                             <TextBlock x:Name="AllActivity" Text="All" />
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{x:Bind act}" />
+                                <Button x:Name="{x:Bind id}" Content="Trash" />
+                            </StackPanel>
                             <!--<TextBlock Text="{x:Bind Test}"/>-->
                         </ListView>
                         <TextBlock x:Name="Partial" Grid.Row="3" HorizontalAlignment="Left" />
