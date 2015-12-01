@@ -168,16 +168,18 @@ namespace Wallet
 
                 foreach (var a in act)
                 {
-                    //item = new StackPanel();
-                    //item.Orientation = Orientation.Horizontal;
+                    item = new StackPanel();
+                    item.Orientation = Orientation.Horizontal;
 
-                    //txt = new TextBlock();
-                    //txt.Text = a.Id;
-                    //Button bt = new Button();
-                    //bt.Name = a.Id;
+                    txt = new TextBlock();
+                    txt.Text = a.Id;
+                    txt.Width = 100;
+                    Button bt = new Button();
+                    bt.Name = a.Id;
+                    bt.Content = new SymbolIcon(Symbol.Delete);
 
-                    //item.Children.Add(txt);
-                    //item.Children.Add(bt);
+                    item.Children.Add(txt);
+                    item.Children.Add(bt);
                     
                     ActivityList.Items.Add(item);
                 }

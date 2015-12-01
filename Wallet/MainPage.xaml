@@ -100,8 +100,8 @@
                         <Border Grid.Row="3" BorderBrush="LightGray" BorderThickness="0, 1, 0, 0" />
                         <TextBlock Text="Activity" Grid.Row="0" FontWeight="Black" HorizontalAlignment="Center" />
                         <ListView x:Name="ActivityList" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Auto" SelectedIndex="0" IsItemClickEnabled="True" ItemClick="activityCostClick">
-                            <!--<TextBlock x:Name="AllActivity" Text="All" />-->
-                            <TextBlock Text="{x:Bind Test}"/>
+                            <TextBlock x:Name="AllActivity" Text="All" />
+                            <!--<TextBlock Text="{x:Bind Test}"/>-->
                         </ListView>
                         <TextBlock x:Name="Partial" Grid.Row="3" HorizontalAlignment="Left" />
                     </Grid>
