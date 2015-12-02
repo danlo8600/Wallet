@@ -19,16 +19,19 @@ namespace Wallet
         private DbManager.CreateDB db = null;
         private DbManager.OperationsOnDB opp = null;
 
+        private List<Activity> act = null;
+
         string simbol = System.Globalization.RegionInfo.CurrentRegion.CurrencySymbol;
 
         public MainPage()
         {
-            this.InitializeComponent();
             /*** Init and Connect DB ***/
             dbFolder = new InitApp.InitFolder().getFolder();
             db = new DbManager.CreateDB(dbFolder);
             opp = new DbManager.OperationsOnDB(db.getConnection());
 
+            this.InitializeComponent();
+            
             /*** Start UI population ***/
             populateActivityList(false);
             populateCostsList("All");
@@ -155,50 +158,53 @@ namespace Wallet
 
         private void populateActivityList(bool repop)
         {
-            List<Activity> act = null;
-            TextBlock txt = null;
-            StackPanel item = null;
 
-            try
-            {
-                act = opp.getActivity();
+            act = opp.getActivity();
 
-                ActivityList.Items.Clear();
-                ActivityList.Items.Add("All");
+            //List<Activity> act = null;
+            //TextBlock txt = null;
+            //StackPanel item = null;
 
-                foreach (var a in act)
-                {
-                    item = new StackPanel();
-                    item.Orientation = Orientation.Horizontal;
+            //try
+            //{
+            //    act = opp.getActivity();
 
-                    txt = new TextBlock();
-                    txt.Text = a.Id;
-                    txt.Width = 100;
-                    Button bt = new Button();
-                    bt.Name = a.Id;
-                    bt.Content = new SymbolIcon(Symbol.Delete);
-                    bt.Background = null;
+            //    ActivityList.Items.Clear();
+            //    ActivityList.Items.Add("All");
 
-                    item.Children.Add(txt);
-                    item.Children.Add(bt);
+            //    foreach (var a in act)
+            //    {
+            //        item = new StackPanel();
+            //        item.Orientation = Orientation.Horizontal;
 
-                    ActivityList.Items.Add(item);
-                }
+            //        txt = new TextBlock();
+            //        txt.Text = a.Id;
+            //        txt.Width = 100;
+            //        Button bt = new Button();
+            //        bt.Name = a.Id;
+            //        bt.Content = new SymbolIcon(Symbol.Delete);
+            //        bt.Background = null;
 
-                if (repop)
-                {
-                    ActivityList.SelectedItem = txt;
-                }
-                else
-                {
-                    ActivityList.SelectedItem = ActivityList.Items[0];
-                }
+            //        item.Children.Add(txt);
+            //        item.Children.Add(bt);
 
-            }
-            catch(NullReferenceException NRE)
-            {
+            //        ActivityList.Items.Add(item);
+            //    }
 
-            }
+            //    if (repop)
+            //    {
+            //        ActivityList.SelectedItem = txt;
+            //    }
+            //    else
+            //    {
+            //        ActivityList.SelectedItem = ActivityList.Items[0];
+            //    }
+
+            //}
+            //catch(NullReferenceException NRE)
+            //{
+
+            //}
         }
 
         private void populateCostsList(string act)
