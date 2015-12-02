@@ -29,7 +29,7 @@ namespace Wallet
             opp = new DbManager.OperationsOnDB(db.getConnection());
 
             this.InitializeComponent();
-            
+
             /*** Start UI population ***/
             populateActivityList(false);
             populateCostsList("All");
@@ -68,7 +68,7 @@ namespace Wallet
                 {
 
                 }
-                
+
                 flyAddAccount.Visibility = Visibility.Collapsed;
                 flyAddActivity.Visibility = Visibility.Collapsed;
                 flyAddCost.Visibility = Visibility.Visible;
@@ -132,14 +132,14 @@ namespace Wallet
             {
 
             }
-            
+
         }
 
         private void addActivityButton_click(object sender, RoutedEventArgs e)
         {
             string newact = setActivity.Text;
 
-            opp.setActivity(newact , "Coming Soon");
+            opp.setActivity(newact, "Coming Soon");
             populateActivityList(true);
             populateCostsList(newact);
             addActivity_Click(null, null);
@@ -156,7 +156,7 @@ namespace Wallet
 
         private void populateActivityList(bool repop)
         {
-            
+
             List<Activity> act = null;
             TextBlock txt = null;
             StackPanel item = null;
@@ -226,8 +226,9 @@ namespace Wallet
                     item.Name = a.IdCost.ToString();
 
                     txt = new TextBlock();
-                    txt.Text = a.IdCost.ToString();
-                    txt.Width = 100;
+                    total += a.Price;
+                    txt.Text = a.ActivityId + " " + a.Price + " " + simbol + " " + a.Date.ToString(System.Globalization.DateTimeFormatInfo.CurrentInfo);
+                    txt.Width = 220;
                     Button bt = new Button();
                     bt.Name = a.IdCost.ToString();
                     bt.Content = new SymbolIcon(Symbol.Delete);
@@ -237,14 +238,10 @@ namespace Wallet
                     item.Children.Add(txt);
                     item.Children.Add(bt);
 
-                    TextBlock it = new TextBlock();
-                    total += a.Price;
-                    it.Name = a.IdCost.ToString();
-                    it.Text = a.ActivityId + " " + a.Price + " " + simbol + " " + a.Date.ToString(System.Globalization.DateTimeFormatInfo.CurrentInfo);
-                    CostList.Items.Add(it);
+                    CostList.Items.Add(item);
                 }
             }
-            catch(NullReferenceException NRE)
+            catch (NullReferenceException NRE)
             {
                 Debug.WriteLine(NRE.Message);
             }
@@ -274,7 +271,7 @@ namespace Wallet
                     cost += a.Price;
                 }
             }
-            catch(NullReferenceException NRE)
+            catch (NullReferenceException NRE)
             {
 
             }
@@ -289,7 +286,8 @@ namespace Wallet
             string act = "All";
             StackPanel blk = e.ClickedItem as StackPanel;
 
-            if (blk != null){
+            if (blk != null)
+            {
                 act = blk.Name;
             }
 
@@ -309,9 +307,10 @@ namespace Wallet
         {
 
             Button bt = e.OriginalSource as Button;
-
-            opp.removeCost(bt.Name);
-            populateActivityList(false);
+            Int32 k = Int32.Parse(bt.Name);
+            opp.removeCost(k);
+            populateCostsList("All");
+            populateMyBill();
         }
         private void selectedDate_Click(CalendarView sender, CalendarViewSelectedDatesChangedEventArgs args)
         {
