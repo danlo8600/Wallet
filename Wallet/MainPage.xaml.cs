@@ -210,14 +210,33 @@ namespace Wallet
             float total = 0;
             List<Cost> costs = null;
 
+            TextBlock txt = null;
+            StackPanel item = null;
+
             CostList.Items.Clear();
 
             try
             {
                 costs = opp.getCosts(act);
 
-                foreach (var a in costs)
+                foreach (Cost a in costs)
                 {
+                    item = new StackPanel();
+                    item.Orientation = Orientation.Horizontal;
+                    item.Name = a.IdCost.ToString();
+
+                    txt = new TextBlock();
+                    txt.Text = a.IdCost.ToString();
+                    txt.Width = 100;
+                    Button bt = new Button();
+                    bt.Name = a.IdCost.ToString();
+                    bt.Content = new SymbolIcon(Symbol.Delete);
+                    bt.Background = null;
+                    bt.Click += rmCostList;
+
+                    item.Children.Add(txt);
+                    item.Children.Add(bt);
+
                     TextBlock it = new TextBlock();
                     total += a.Price;
                     it.Name = a.IdCost.ToString();
@@ -286,6 +305,14 @@ namespace Wallet
             populateActivityList(false);
         }
 
+        private void rmCostList(object sender, RoutedEventArgs e)
+        {
+
+            Button bt = e.OriginalSource as Button;
+
+            opp.removeCost(bt.Name);
+            populateActivityList(false);
+        }
         private void selectedDate_Click(CalendarView sender, CalendarViewSelectedDatesChangedEventArgs args)
         {
 
