@@ -83,7 +83,7 @@ namespace Wallet.DbManager
         //Get data from all exsisting activities
         public List<Activity> getActivity()
         {
-            var res = db.Query<Activity>("select * from Activity");
+            List<Activity> res = db.Query<Activity>("select * from Activity");
             return res;
         }
 
@@ -131,7 +131,7 @@ namespace Wallet.DbManager
         //Find Costs of a specifc date
         public List<Cost> findCosts(DateTime startDate, DateTime endDate)
         {
-            var res = db.Query<Cost>("select * from cost where Date >= " + "'" + startDate + "'" + " and " + "Date <= " + "'" + endDate + "'");
+            List<Cost> res = db.Query<Cost>("select * from cost where Date >= " + "'" + startDate + "'" + " and " + "Date <= " + "'" + endDate + "'");
             return res;
         }
 

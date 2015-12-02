@@ -19,8 +19,6 @@ namespace Wallet
         private DbManager.CreateDB db = null;
         private DbManager.OperationsOnDB opp = null;
 
-        private List<Activity> act = null;
-
         string simbol = System.Globalization.RegionInfo.CurrentRegion.CurrencySymbol;
 
         public MainPage()
@@ -53,7 +51,7 @@ namespace Wallet
 
             if (flyAddCost.Visibility == Visibility.Collapsed)
             {
-                ObservableCollection<string> act = new ObservableCollection<string>();
+                List<string> act = new List<string>();
 
                 try
                 {
@@ -126,7 +124,7 @@ namespace Wallet
 
                 opp.setCost(act, val, preDate, "Coming Soon");
                 populateCostsList(act);
-                ActivityList.SelectedItem = act;
+                //ActivityList.SelectedItem = act;
                 addCost_Click(null, null);
                 populateMyBill();
             }
@@ -158,53 +156,53 @@ namespace Wallet
 
         private void populateActivityList(bool repop)
         {
+            
+            List<Activity> act = null;
+            TextBlock txt = null;
+            StackPanel item = null;
 
-            act = opp.getActivity();
+            try
+            {
+                act = opp.getActivity();
 
-            //List<Activity> act = null;
-            //TextBlock txt = null;
-            //StackPanel item = null;
+                ActivityList.Items.Clear();
+                ActivityList.Items.Add("All");
 
-            //try
-            //{
-            //    act = opp.getActivity();
+                foreach (Activity a in act)
+                {
+                    item = new StackPanel();
+                    item.Orientation = Orientation.Horizontal;
+                    item.Name = a.Id;
 
-            //    ActivityList.Items.Clear();
-            //    ActivityList.Items.Add("All");
+                    txt = new TextBlock();
+                    txt.Text = a.Id;
+                    txt.Width = 100;
+                    Button bt = new Button();
+                    bt.Name = a.Id;
+                    bt.Content = new SymbolIcon(Symbol.Delete);
+                    bt.Background = null;
+                    bt.Click += rmActList;
 
-            //    foreach (var a in act)
-            //    {
-            //        item = new StackPanel();
-            //        item.Orientation = Orientation.Horizontal;
+                    item.Children.Add(txt);
+                    item.Children.Add(bt);
 
-            //        txt = new TextBlock();
-            //        txt.Text = a.Id;
-            //        txt.Width = 100;
-            //        Button bt = new Button();
-            //        bt.Name = a.Id;
-            //        bt.Content = new SymbolIcon(Symbol.Delete);
-            //        bt.Background = null;
+                    ActivityList.Items.Add(item);
+                }
 
-            //        item.Children.Add(txt);
-            //        item.Children.Add(bt);
+                if (repop)
+                {
+                    ActivityList.SelectedItem = txt;
+                }
+                else
+                {
+                    ActivityList.SelectedItem = ActivityList.Items[0];
+                }
 
-            //        ActivityList.Items.Add(item);
-            //    }
+            }
+            catch (NullReferenceException NRE)
+            {
 
-            //    if (repop)
-            //    {
-            //        ActivityList.SelectedItem = txt;
-            //    }
-            //    else
-            //    {
-            //        ActivityList.SelectedItem = ActivityList.Items[0];
-            //    }
-
-            //}
-            //catch(NullReferenceException NRE)
-            //{
-
-            //}
+            }
         }
 
         private void populateCostsList(string act)
@@ -270,8 +268,7 @@ namespace Wallet
         private void activityCostClick(object sender, ItemClickEventArgs e)
         {
             string act = "All";
-
-            TextBlock blk = e.ClickedItem as TextBlock;
+            StackPanel blk = e.ClickedItem as StackPanel;
 
             if (blk != null){
                 act = blk.Name;
@@ -280,10 +277,13 @@ namespace Wallet
             populateCostsList(act);
         }
 
-        private void rmActClick(object sender, ItemClickEventArgs e)
+        private void rmActList(object sender, RoutedEventArgs e)
         {
-            //opp.removeActivity();
-            populateActivityList(true);
+
+            Button bt = e.OriginalSource as Button;
+
+            opp.removeActivity(bt.Name);
+            populateActivityList(false);
         }
 
         private void selectedDate_Click(CalendarView sender, CalendarViewSelectedDatesChangedEventArgs args)

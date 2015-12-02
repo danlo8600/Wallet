@@ -5,7 +5,6 @@
     xmlns:local="using:Wallet"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:data="using:Wallet.DbManager"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -98,14 +97,12 @@
                         </Grid.RowDefinitions>
                         <Border Grid.Row="0" BorderBrush="LightGray" BorderThickness="0, 0, 0, 1" />
                         <Border Grid.Row="3" BorderBrush="LightGray" BorderThickness="0, 1, 0, 0" />
+                        
                         <TextBlock Text="Activity" Grid.Row="0" FontWeight="Black" HorizontalAlignment="Center" />
-                        <GridView x:Name="ActivityList" ItemsSource="{x:Bind act}" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Auto" SelectedIndex="0" IsItemClickEnabled="True" ItemClick="activityCostClick">
-                            <GridView.ItemTemplate>
-                                <DataTemplate x:DataType="data:Activity">
-                                    <TextBlock Text="{x:Bind Description}"/>
-                                </DataTemplate>
-                            </GridView.ItemTemplate>
-                        </GridView>
+
+                        <ListView x:Name="ActivityList"  Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Auto" SelectedIndex="0" IsItemClickEnabled="True" ItemClick="activityCostClick">
+                            <TextBlock Text="All" />
+                        </ListView>
                         <TextBlock x:Name="Partial" Grid.Row="3" HorizontalAlignment="Left" />
                     </Grid>
 
