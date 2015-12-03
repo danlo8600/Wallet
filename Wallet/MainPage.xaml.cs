@@ -49,6 +49,9 @@ namespace Wallet
         {
             List<Activity> activity = null;
 
+            CostValue.Text = string.Empty;
+            costDate.Date = DateTime.Now;
+
             if (flyAddCost.Visibility == Visibility.Collapsed)
             {
                 List<string> act = new List<string>();
@@ -81,6 +84,8 @@ namespace Wallet
 
         private void addActivity_Click(object sender, RoutedEventArgs e)
         {
+            setActivity.Text = string.Empty;
+
             if (flyAddActivity.Visibility == Visibility.Collapsed)
             {
                 flyAddAccount.Visibility = Visibility.Collapsed;
@@ -95,6 +100,9 @@ namespace Wallet
 
         private void addAccount_Click(object sender, RoutedEventArgs e)
         {
+            amount.Text = string.Empty;
+            amountDate.Date = DateTime.Now;
+
             if (flyAddAccount.Visibility == Visibility.Collapsed)
             {
                 flyAddActivity.Visibility = Visibility.Collapsed;
@@ -191,7 +199,7 @@ namespace Wallet
 
                 if (repop)
                 {
-                    ActivityList.SelectedItem = txt;
+                    ActivityList.SelectedItem = item;
                 }
                 else
                 {

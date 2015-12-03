@@ -26,6 +26,10 @@ namespace Wallet.DbManager
             {
                 Debug.WriteLine("ERROR: " + NREEX.Message);
             }
+            catch (System.BadImageFormatException BIFE)
+            {
+                Debug.WriteLine("Error: " + BIFE.Message);
+            }
         }
 
         public SQLiteConnection getConnection()
